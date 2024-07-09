@@ -1,0 +1,382 @@
+---
+title: "Data Harvesting 101: Exploring Webscraping Techniques with R"
+author: "Josef Holnburger"
+date: "`r Sys.Date()`"
+format:
+    html: 
+      self-contained: true
+      code-overflow: wrap
+editor: visual
+bibliography: scraping.bib
+code-annotations: hover
+---
+
+With the decision of numerous social networks to seal off their APIs more strongly and, for example, to offer them only against payment (or not at all), the possibility for scientists to systematically capture an important sphere of discourse and to determine its influence and impact on society is increasingly limited. The long-term impact of this decision will likely only become apparent over the coming months and years, but a short-term impact can already be seen: The relevance of web scraping is on the rise again. To replace the sealed-off APIs, it seems that many programmers, especially responding to Twitter, resorted to systematically retrieving data via the website -- apparently at such a high frequency that Elon Musk's Twitter decided to put all of the website's posts behind a login wall, thus making it more difficult to capture Twitter's data via scraping [@binder_2023].
+
+This is ironic because many social networking sites had offered an API with (often) free quotas precisely to avoid the burden of webscraping on servers [@khder_2021, p.147]: Because webscraping comes with a variety of ehtical, technical and also legal concerns and questions [see @khder_2021]. Even if one is only interested in a fraction of the publicly accessible data, webscraping requires capturing the entire website in order to extract the relevant information: Thus, significantly more data is delivered than would be necessary, for example, to provide a scientific answer to a hypothesis. Images are loaded, clicks are simulated -- in the end a normal user behavior might be implied.
+
+This article therefore aims on the one hand to show how such content can be accessed using concrete examples -- but also how to deal with it within the scope of one's own responsibility not to overload web servers and to access data according to modern standards. Ultimately, however, it is primarily the providers of social networks and websites who are called upon to offer the interfaces to their data for civil society and science in a suitable manner -- after all, their Internet presences influence the public discourse space. A space of discourse that should be critically monitored and analyzed, and whose monitoring must remain permitted. Currently, it seems that many platform operators are resisting this responsibility and the need for transparency -- but this defensiveness could ultimately also fail due to the regulations of the Digital Services Act if, as demanded by many organizations, it successfully forces platform operators to hand over their data [see @edmo_2023; @algorithmwatch_2023].
+
+## Webscraping: The current state
+
+Meanwhile numerous packages for programming languages were written, which simplified the collection of data clearly. In the `Python` world [`Beautiful Soup`](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) could establish itself as one of the most important program libraries, in the `R` universe [`rvest`](https://rvest.tidyverse.org/) takes a key role: Both libraries make it possible to capture data from static web pages and extract elements from it, which can be evaluated further down the line.[Other programming languages and associated libraries also enable comprehensive web scraping -- for example, [Puppeteer](https://pptr.dev/) is a good way to capture both static and dynamic web pages via Node.js.]{.aside} For the purposes of this article, we will take a comprehensive look at the `rvest` package and its capabilities -- and also point out options when, for example, pages do not have static elements but should still be captured.
+
+In the context of this article, two sites in particular will be explored -- the pro-Russian disinformation website Anti-Spiegel.ru of conspiracy ideologist Thomas Röper [see @balzer_2022] and the conspiracy ideology media portal AUF1 [see @scherndl_2023] run by right-wing extremist Stefan Magnet. While Röpers Anti-Spiegel is a static website (operated with Wordpress) -- i.e. a website which is rendered by the server -- AUF1 is a website which, like many other modern websites, is only partially rendered and only fully loaded in the browser.[An overview of the different principles of web content delivery can be found in this [article](https://www.freecodecamp.org/news/rendering-patterns/)]{.aside} Both websites are thus very well suited to demonstrate different ways of scraping with `rvest`. In terms of content, these are two sites that influence the discourse space with anti-democratic worldviews and disinformation regarding, for example, the Russian war of aggression on Ukraine and the topic of vaccinations and pandemics -- and whose content has had and continues to have a major influence on (at least parts of) society in the German-speaking world. Therefore, they should not only serve as an example for data collection, but also show that it is important to deeply investigate such platforms.
+
+### What to expect from this article
+
+In the context of this article we show how the data can be captured with the programming language `R` and the library `rvest`. This is done using the `tidy` principles [@wickham_2014], which among other things should make the code presented here easy to grasp for humans. The code examples presented here are intended for beginners as well as advanced programmers -- where possible there are extended references in the code as well as to further sources and tutorials.
+
+## Diving into a pro-Russian disinformation world
+
+The Russian propagandist Thomas Röper publishes numerous articles on his website in which he belittles the consequences of, for example, the Russian war of aggression on Ukraine and denies war crimes [see @journalist_2022]. He not only writes his own articles, but also publishes news reports from the Russian news agency TASS and the Kremlin outlet Russia Today. In order to determine which domains are cited particularly frequently, these sections will show how to proceed here. Possible complications during the scraping process will also be discussed.
+
+```{r setup, warning=FALSE, message=FALSE}
+library(rvest)
+library(tidyverse) # <1>
+library(glue) # <2>
+
+page <- read_html("https://www.anti-spiegel.ru/category/aktuelles/")
+
+```
+
+1.  Several packages of the tidyverse will be used, for example `dplyr` for data manipulation or `ggplot` to visualize the data we accessed. Therefore the whole tidyverse is being loaded.
+2.  Glue is used for better data annotations in the graphs. Optional.
+
+On his website we can find a link with which we can access all his articles. `rvest` can make the data usable for our further analysis. Via `read_html` we can read a page, then we can access different elements of the web page via the function `html_elements()`. The easiest way is to use so called CSS selectors to choose the section which should be extracted: CSS selectors are different patterns which can be used to access different elements of an HTML page. [An overview of different CSS selector patterns can be found at [W3Schools](https://www.w3schools.com/cssref/css_selectors.php)]{.aside}
+
+To make it easier to choose the right selectors, you can use the Google Chrome extension [SelectorGadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb): By simply selecting and deselecting on a web page, the right CSS selector for the right segment can often be found quickly, as in the example of the title of each article here. [Selecting the title and deselecting the ticker shows, that currently 20 titles are being highlighted using the selector `image-left .title`]{.aside}
+
+![Selectorgadget example on Röpers page](screenshots/roeper_page_example.png){fig-alt="Selectorgadget example on Röpers page"}
+
+Using the CSS selectors, we can now determine the segments that are relevant to us -- afterwards, we will write a function that will store all the relevant information in one record.
+`rvest` also has useful support functions here, such as `html_text()`. This function allows us to convert html types into simple text vectors -- `html_text2()` extends this function and additionally removes unnecessary white-spaces. [You'll find a good introduction to `rvest` and documentation on it's [main page](https://rvest.tidyverse.org/)]{.aside}
+The most important functions for us are `html_elements()` and `html_attr()` -- they allow us to extract elements and attributes (for example, the link from the `href` attribute of a `<a>` node). `rvest` makes use of many functions of the `xml2` package, so it's worth having a look at its documentation.[For example, `html_structure()` from `xml2` is useful to get an overview of the structure of a web page.]{.aside}
+
+
+```{r example_output}
+page %>% 
+  html_elements(".image-left .title") %>%
+  html_text()
+```
+
+In most cases, not all content relevant to the investigation can be found on one page, but distributed over several pages. Also in our example we find over 200 pages which could be extracted. Of course, we can manually compile the pages we want to scrape -- or extract them automatically and reproducibly from the overview page.
+
+![](screenshots/roeper_next_page.png)
+
+Using the CSS selector `.page-numbers` we can extract all page numbers -- however, here we also extract the `Next` navigation object. To extract the relevant information from these objects (here for example the last number) we have to use regular expressions. Regular expressions are certain terms and symbols that search for patterns in a text, in the following example a number that is not followed by another number.
+[A useful extension for R is [Regexplain](https://github.com/gadenbuie/regexplain). This add-on for RStudio allows to test various regular expressions directly in the interface. Many tips and tools can also be found online, for example [regex101](https://regex101.com/).]{.aside}
+
+```{r last_page}
+last_page_nmbr <- page %>% 
+  html_elements(".page-numbers") %>% 
+  html_text() %>% 
+  paste(collapse = " ") %>% # <1>
+  str_extract("(\\d+)(?!.*\\d)") # <2>
+```
+
+1.  Collapse the vector to one string separated by a space
+2.  Regular expression for selecting the last digit in a string
+
+In a next step we can now write our own function which extracts the relevant sections from each overview page. The result is output as a `tibble` -- a `data.frame` object that also provides a quick overview of the data in the console and can be used for.
+To avoid scraping later on, we also store the raw HTML in a column of the `tibble`. This also allows us to extract data later: For example, the number of comments. Such a procedure is also a best practice, as it allows us to avoid a larger server load for the site operator due to multiple scraping.
+
+```{r overview_function}
+get_article_overview <- function(url) {
+  page <- read_html(url)
+  
+  tibble(
+    title = page %>% 
+      html_elements(".image-left .title") %>%
+      html_text(),
+    subtitle = page %>% 
+      html_elements(".image-left .dachzeile") %>% 
+      html_text(),
+    url = page %>% 
+      html_elements(".image-left .title") %>% 
+      html_attr("href"), 
+    date = page %>% 
+      html_elements(".image-left .date") %>% 
+      dmy(locale = "de_DE.UTF-8"), # <1>
+    raw = page %>% 
+      html_elements(".image-left .listing-item") %>%
+      as.character() # <2>
+  )
+}
+```
+
+1.  Because the date is a date-month-year format in german we provide a locale -- might not work if it isn't installed on your computer
+2.  We store this as `character` because a tibble doesn't accept a `xml_nodeset` item, which also points to a serialized object stored in memory. We can reserialze this object again using `read_html`.
+
+Using our just written function and the previously extracted last page number, a vector of all overview pages can now be created. Afterwards, using the function `map()` from the package `purrr`, our function can be applied to all pages and in turn `tibble` can be formed from them (`map_dfr()` applies the function and forms a `data.frame`(df) by merging the results row by row (r)).
+
+```{r read_in_data, echo = FALSE}
+all_articles_summary <- read_rds("data/all_articles_summary.rds")
+```
+
+```{r scraping_all_pages, eval=FALSE}
+url_part <- "https://www.anti-spiegel.ru/category/aktuelles/?dps_paged="
+
+all_page_urls <- map_chr(1:last_page_nmbr,
+                         ~paste0(url_part, .x))
+
+all_articles_summary <- map_dfr(all_page_urls, get_article_overview)
+
+all_articles_summary
+
+```
+
+Because `R` and `rvest` work only sequentially via `map()` the command can often take a long time: one web page is called, scraped and then the next web page is called and scraped. The internet speed, the computing power as well as possible blockades by site operators can lead to the fact that individual connections are even aborted or the command would take so long that it is no longer practicable to scrape a web page.
+
+We can improve the scraping process by parallelization: It is important to keep in mind that parallelization leads to additional load on the affected web servers. Several pages are opened in parallel -- more in @sec-parallelization.
+
+Webscraping is a gray area and is regulated differently from country to country or was part of court decisions. Even if site operators want to prevent web scraping, for example through their terms of use, it may still be justified and permitted, e.g. for consumer protection reasons. This is the case in Germany, for example. [see @germanfederalcourtofjustice_2014].
+
+
+
+## Analyzing scraped data and next steps
+
+
+
+Since the data is in `tidy` format [see @wickham_2014], further analysis and presentation via the packages of the `tidyverse` is simple and clear. Using `ggplot` we can, for example, display the number of posts that were written per month.  
+
+```{r posts_per_month}
+#| label: fig_nmbr_articles
+#| fig-cap: "Number of article per month on the german pro-russion propaganda website antispiegel.ru by Thomas Röper"
+
+all_articles_summary %>%
+  mutate(month = floor_date(date, "month")) %>%
+  count(month) %>%
+  filter(month != today() %>% floor_date("month")) %>% # <1>
+  ggplot(aes(month, n)) +
+  geom_line() +
+  theme_light() +
+  labs(title = "Posts per Month on antispiegel.ru", 
+       subtitle = glue("Posts until {today() %>% format('%B %Y')}"), 
+       y = "Posts", x = NULL)
+```
+
+1.  We filter out the current month because it would be misrepresented in the dataset.
+
+
+It can be seen that Röper publishes especially this year besponders many news.
+While we have not covered scraping the number of comments via our function, we can do so by extracting the number of comments from the raw values in the column `raw`. Thus we avoid further scraping of the data.
+
+[The reason why we did this is also because not all articles contain comments -- if comments are missing, there is also no `html_element` with comments, leading to fewer comment fields then e. g. title fields and a `tibble` can't be constructed.]{.aside}
+
+```{r histogram_comments, warning=FALSE}
+#| fig-cap: "Histogram of number of comments under each article from anti-spiegel.ru"
+get_comments <- function(raw_data) {
+ element <- read_html(raw_data)
+ html_elements(element, ".comments-link a") %>% html_text(trim = TRUE)
+}
+
+article_comments <- all_articles_summary %>%
+  mutate(comments_string = map(raw, 
+                               possibly(get_comments, # <1>
+                                        otherwise = NA_character_))) %>% 
+  unnest(comments_string) %>%
+  mutate(comments = str_extract(comments_string, "\\d+") %>% as.numeric())
+
+article_comments %>%
+  ggplot(aes(comments)) +
+  geom_histogram(binwidth = 1) +
+  theme_light() +
+  labs(title = "Histogram of comments at anti-spiegel.ru",
+       subtitle = glue("Posts until {today() %>% format('%B %Y')}"))
+```
+
+1.  We wrap this in `possibly` to prevent errors from stopping the code execution. If we can't extract a comment string we otherwise give it a `NA` value.
+
+We do see that the most discussed article has `r article_comments %>% top_n(1, comments) %>% pull(comments)` user comments with the headline "`r article_comments %>% top_n(1, comments) %>% pull(title)`" from `r article_comments %>% top_n(1, comments) %>% pull(date) %>% format("%d. %B %Y")`. Most of the articles are not commented.
+
+## Scraping huge datasets via parallelization {#sec-parallelization}
+
+Previously, content was scraped sequentially and we were able to extract 20 article summaries per scraped page. If we now want to scrape not only the preview of the articles but all pages, the number of pages to be scrapped increases significantly. With the package `furrr` we can improve the scraping process by parallelization: It is important to keep in mind that parallelization leads to additional load on the affected web servers. Several pages are opened in parallel. It is therefore important to include pauses in the function definition to distribute the load and to keep the number of cores used for parallelization low - in this case a maximum of five `workers` working in parallel.
+
+Via `plan(mulitsession)` we specify that the following code should be executed in parallel sessions - this is not always faster because the sessions have to be started and ended. Small data sets are possibly better suited with a sequential approach.
+
+All articles of Anti-Spiegel.ru should be scrapped and analyzed -- however, in first tests it could be noticed that a lot of content on Röper's page is repeated. For example, under each article there is a reference to his book published by J.K-Fischer Verlag. However, this advertisement for his own publication is separated from the rest of the text by a dividing line.
+
+Using simple CSS selectors, however, this part cannot be separated from the rest -- though `rvest` can be used with extended `xpath` selectors. These allow us, for example, to only scrape `<p>` nodes which are followed by a `<hr>` node (the separator). [Chaet sheets for using xpath selectors are available [here](https://devhints.io/xpath).]{.aside}
+
+```{r xpath_example}
+
+page <- read_html("https://www.anti-spiegel.ru/2023/daenemark-deutschland-und-schweden-verweigern-auskunft-beim-un-sicherheitsrat-zur-nord-stream/")
+
+page %>%
+  html_elements(xpath = "//p[following-sibling::hr]") %>% 
+  html_text() %>%
+  paste(collapse = "\n")
+
+```
+
+Unfortunately, however, not all entries have this separator, so we get no results for some entries with this `xpath` selector -- for example with this article.
+
+```{r problematic_article #lst-problematic_article}
+page <- read_html("https://www.anti-spiegel.ru/2022/ab-freitag-gibt-es-russisches-gas-nur-noch-fuer-rubel-die-details-von-putins-dekret-und-was-es-bedeutet/")
+
+
+page %>%
+  html_elements(xpath = "//p[following-sibling::hr]") %>% 
+  html_text() %>%
+  paste(collapse = "\n")
+```
+
+Often you will encounter such problems when web scraping, so it is important to work with a lot of examples first and test the code extensively. In this case, we finally scrape the data with a CSS selector and remove the always same advertising paragraphs with simple regular expressions. As mentioned above we create a function with pauses of 5 seconds (`Sys.sleep(5)`) on 5 processors at the same time.
+
+```{r read_in_article_data, echo=FALSE}
+all_articles_full <- read_rds("data/all_articles_full.rds")
+```
+
+```{r multi_scraping, warning=FALSE, message=FALSE, eval=FALSE}
+library(furrr)
+plan(multisession, workers = 5)
+
+get_article_data <- function(url) {
+  page <- read_html(url)
+  
+  # Pause for 5 seconds
+  Sys.sleep(5)
+  
+  # regex for addendum beginning
+  pattern_addendum <- "In meinem neuen Buch.*$|Das Buch ist aktuell erschienen.*$"
+  
+  tibble(
+    url = url,
+    raw = page %>% 
+      html_elements(".article__content > p") %>%
+      as.character() %>%  # <1>
+      str_remove(pattern_addendum) %>%
+      paste0(collapse = ""),
+    text = page %>% 
+      html_elements(".article__content > p") %>% 
+      html_text() %>%
+      str_remove(pattern_addendum) %>%
+      paste(collapse = "\n"),
+    datetime = page %>% 
+      html_elements(".article-meta__date-time") %>% 
+      html_text2() %>% # <1>
+      dmy_hm(locale = "de_DE.UTF-8")
+  )
+  
+}
+
+all_articles_full <- future_map(all_articles_summary %>% 
+                                  filter(date >= "2022-01-01") %>% pull(url),
+                                ~try(get_article_data(.x)), .progress = TRUE) # <2>
+```
+
+1.  `html_text2` to trim the data and remove unnecessary white spaces.
+2.  Wrapped in `try` to prevent errors from failing the whole process -- failed scrapings can be removed afterwards.
+
+We are implementing further measures to prevent our code from breaking prematurely and losing the already scraped content. Because we wrap the function in a `try`, even errors do not lead to an abortion of the scraping. Errors can, for example, mean connection failures. These failures can be fixed in a further process -- if errors occur too often, it is recommended to optimize the code or to have longer pause times during the scraping to avoid overloading the servers.
+
+In order to avoid scraping all websites, we have also determined that we are only interested in data from 2022 onwards -- in a final step, we want to determine which domains are particularly frequently cited by Thomas Röper.
+
+
+```{r top_domains}
+#| label: tbl-domains
+#| tbl-cap: Most shared domains by anti-spiegel.ru
+
+all_articles_df <- all_articles_full %>%
+  keep(is_tibble) %>%
+  bind_rows()
+
+get_links <- function(raw_html) {
+  element <- read_html(raw_html)
+  element %>% html_elements("a") %>% html_attr("href")
+}
+
+get_domain <- function(link) {
+  # regex for domain
+  domain_pattern <- "^(?:[^@\\/\\n]+@)?([^:\\/?\\n]+)"
+  
+  link %>%
+    str_remove("http://|https://") %>%
+    str_remove("^www.") %>%
+    str_extract(domain_pattern)
+}
+
+all_articles_df %>%
+  mutate(links = map(raw, possibly(get_links, otherwise = NA_character_))) %>%
+  mutate(domain = map(links, possibly(get_domain, otherwise = NA_character_))) %>%
+  unnest(domain) %>%
+  count(domain, sort = TRUE) %>%
+  head(10) %>%
+  knitr::kable() # <1>
+```
+
+1.  `kable()` from the library `knitr` is only used in this context to generate an html table
+
+In conclusion, we can see that Röper refers particularly frequently to the Russian news agency TASS and also the Kremlin outlet RT DE -- here it is not only links that he shares but entire articles. Although there are e.g. European sanctions and a broadcast ban against RT DE [see @spiegel_2022; @derstandard_2022] -- further information why this is partly still possible can be found for example at @baeck_2023. Among the most shared domains is also t.me of the platform and messenger service Telegram -- this platform is used by Röper particularly often, along with YouTube.
+Incidentally, if we hadn't removed the advertising block, J.K. Fischer Verlag would be in first place in this table.
+
+
+## The internet isn't as static as it used to be
+
+Roeper's website is comparatively simple in design. The Wordpress site is statically generated. The web server simply outputs HTML pages, which can be downloaded and checked.
+
+Not all sites are built this way, in fact it has probably become more common to host dynamic websites. This is also the case with the Austrian website AUF1 of the right-wing extremist and conspiracy ideologue Stefan Magnet [see @scherndl_2023], which quickly became one of the most widespread websites of pandemic deniers in the German-speaking world from autumn 2021.
+
+Content scraped via `rvest` shows that for example reactions can't be scraped -- it simply shows an empty value. 
+
+![AUF1 Screenshot with Reactions](screenshots/AUF1_reactions.png)
+
+```{r auf1_not_working}
+rndm_article <- "https://auf1.tv/auf1-spezial/fpoe-gesundheitssprecher-kaniak-zu-who-plaenen-impf-zwang-auch-ohne-pandemie"
+
+page <- read_html(rndm_article)
+
+page %>% html_elements(".reactions")
+```
+
+A workaround here is to simulate a browser, which calls the page and executes all content. One possibility for this would be to use `Selenium`. Actually, this is a framework for automated software testing of web applications in different browsers -- but it shall be used in this example as a possibility for advanced web scraping.
+
+With `RSelenium` we can start different browsers (in this case we use Firefox, the corresponding binaries are downloaded via `wdman`). Afterwards we navigate to the corresponding page and then load the web page contents of the finished page back into `rvest` via `read_html`. Afterwards we can work as before and analyze different contents.
+
+```{r selenium, warning=FALSE, message=FALSE}
+#| label: tbl-emojis
+#| tbl-cap: Reactions used on a random AUF1 article
+library(RSelenium)
+
+# start the browser
+# check if java and openjdk is installed first
+# wdman will install the rest
+rD <- rsDriver(browser = "firefox", verbose = FALSE)
+rD$client$navigate(rndm_article)
+
+Sys.sleep(3) # <1>
+
+page <- read_html(rD$client$getPageSource()[[1]]) # <2>
+
+tibble(
+  emoji = page %>% 
+    html_elements(".reactions .emoji") %>%
+    html_text() %>%
+    unique(),
+  count = page %>% 
+    html_elements(".reactions .count") %>%
+    html_text() %>%
+    as.integer()
+  ) %>%
+  arrange(-count) %>%
+  pivot_wider(names_from = emoji, values_from = count) %>%
+  knitr::kable(align = "c")  # <3>
+
+
+```
+1. Setting a sleep for 3 seconds to guarantee that the page has finished loading.
+2. We can load in the Selenium page source directly into rvest and use it as before
+3. Just for styling purposes, this looks more clean in the browser
+
+With `RSelenium` we where able to extract data which wouldn't be possible via `rvest` alone. We could now write a function to extract all emojis on videos and find the video that had the most interactions -- we won't do this in this article but most tools should be provided for interested (social) scientists and the civil society to build web scraping projects on their own. Even for advanced and dynamic web pages.
+
+One last thing: Because we were using an automated browser on our Desktop we need to close it after reading in our data. Otherwise the browser will keep on running in the background. We then close our server which provided the background tasks for running Selenium. 
+
+
+```{r closing_selenium, warning=FALSE, message=FALSE, results='hide'}
+rD$client$close()
+rD$server$stop()
+```
+
