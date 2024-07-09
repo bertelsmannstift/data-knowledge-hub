@@ -1,0 +1,113 @@
+---
+sidebar_position: 2
+title: Five Common Data Collection Methods
+---
+
+# Common data collection methods on social media platforms illustrated with TikTok
+
+import AuthorCard from "../../src/components/AuthorCard.js";
+import VideoCard from "../../src/components/VideoCard.js";
+
+<AuthorCard
+  name="Martin Degeling"
+  avatar="MD"
+  position="Stiftung Neue Verantwortung"
+  website="https://www.stiftung-nv.de/de/person/dr-martin-degeling"
+  mastodon="https://chaos.social/@mrtn3000"
+></AuthorCard>
+
+<VideoCard
+  videoSrc={require("@site/static/video/UPDEM_Degeling_540.mp4").default}
+  thumbnailSrc={require("@site/static/video/UPDEM_Degeling_540.png").default}
+></VideoCard>
+
+There are always multiple ways to audit an online platform. Depending on the question you want to answer, one or more approaches can lead to insights about (data) practices of a social media platform. In the following chapter, you will find an overview of common data collection methods – all of which we have leveraged to better understand the practices of TikTok. The chapter is based on our work on [auditing recommender systems](https://www.stiftung-nv.de/de/publication/auditing-recommender-systems#step3-types-if-algo-audits).
+
+## Open Source Research (aka Document Audit)
+
+Open-Source Research can cover a range of sources. From public documentation shared by platforms themselves, to reports or information they are legally required to publish to internal documents that become available due to leaks or unintended publications.
+
+### Press Releases
+
+Online platforms and services often share information and updates for marketing purposes, highlighting positive things like user growth or examples of how they support the individual or public good. TikTok for example regularly publishes updates on their own “[newsroom](https://newsroom.tiktok.com)” about new products as well as analyses of the content on the platform (e.g. Toplists).
+While press releases are commonly favorable to the platform, they also intend to shape public discourse about the platform (or disperse criticism). For example, in the TikTok Community News section you will find that TikTok specifically mentions several communities from Entertainment (Gaming, Sports, Music), but also stories with which TikTok wants to emphasize diversity after - presumably to counter narratives that certain voices are being silenced or that negative content is spreading on the platform. This includes articles hightlighting [#BlackTikTok](https://newsroom.tiktok.com/en-us/bhm-2023), [#WomenOfTikTok](https://newsroom.tiktok.com/en-us/celebrating-womenoftiktok-women-who-will-inspire-positive-and-meaningful-change-us), [#TransVisibility](https://newsroom.tiktok.com/en-us/celebrating-transvisibility-on-tiktok) or Medical [#MentalHealthAwarness](https://newsroom.tiktok.com/en-us/mentalhealthawarenessmonth-2023) [#ItsTimeForChange (Eating Disorder Awareness Week)](https://newsroom.tiktok.com/en-us/eating-disorders-awareness-week-2023).
+
+I asked [ChatGPT](https://chat.openai.com/) to “identify 5 recurring topics in the following text”, which was the 33 headlines of 2023 I copy pasted from the website. chatGPT classfied the headlines into the following topics, that could be intrepreted as what the TikTok PR Department thinks is most important to the brand:
+
+- Gaming on TikTok
+- Community and Creativity
+- Partnerships and Collaborations
+- Music and Entertainment
+- Social and Cultural Awareness
+
+### Documentation and Reports
+
+Another source of information are official reports or (legal) documentaion, including Terms of Services, support documents, [transparency reports](https://www.tiktok.com/transparency/de-de/netzdg-2022-2/), audits or similar. TikTok for example publishes transparency reports on their website. They often provide data in a machine-readable format so that it is possible to track changes over time or conduct analyses beyond what the platform shares proactively.
+
+### Research
+
+Large online platforms often have dedicated research and development teams that publish some of their findings in journals or share results during scientific conferences. Google for instance has published some very impactful research, starting with the original page rank algroithm on which the platform was based in its early years, as well as various contributions to research in the AI field, most notably the transformer models that enabled the creation of large language models. Though academic research papers often focus on a rather narrow question, they sometimes explain a key element of a platform in depth (like the page rank example).
+
+Not all platforms are open about the inventions at the core of their systems, but even ByteDance, the parent company of TikTok, allows their employees to publish academic papers from time to time. In 2022, TikTok researchers published a study [Monolith: Real Time Recommendation System With Collisionless Embedding Table](https://arxiv.org/pdf/2209.07663.pdf), which in which they describe how they tackled the challenges of real-time recommendations in large item space. While it is unclear, whether this is the indeed the underlying technology that drives TikTok, [many assume](https://www.shaped.ai/blog/the-secret-sauce-of-tik-toks-recommendations) it is.
+
+### Internal Documents and Journalistic Sources
+
+Investigative journalists sometimes have access to internal information from whistleblowers and informants that reveal organizational misconduct or systemic problems within platforms.
+
+TikTok has been subject of whistleblowing and leaking, too. In June 2022 audio recordings from meetings were [leaked to reporters](https://www.buzzfeednews.com/article/emilybakerwhite/tiktok-tapes-us-user-data-china-bytedance-access) that disclosed that data from US users was being accessed from China. Early in 2023 the same journalists revealed that TikToks _For You_ Page is not entirely driven by the algorithm, but that instead TikTok employees can use [a mechanism coined 'heating'](https://www.forbes.com/sites/emilybaker-white/2023/01/20/tiktoks-secret-heating-button-can-make-anyone-go-viral/) to push certain content.
+
+### Document Leaks
+
+Sometimes parts of the material used for journalistic reporting become public, too. Platform researchers can use these documents to obtain first-hand knowledge about a platform and its inner workings.
+
+In 2021, someone discovered a leaked document from TikTok breaking down the algorithm. The New York Times [reported](https://www.nytimes.com/2021/12/05/business/media/tiktok-algorithm.html) about the incident but did not give access to their translation. [We optained](https://github.com/snv-berlin/tiktok-audit/blob/main/TikTok%20Algo%20101%20EN.md) the orgiginal document from chinese document sharing platforms and translated it to get a first hand look at the document.
+
+During research for our auditing project, [we discovered](https://github.com/snv-berlin/tiktok-audit/blob/main/TikTok%20Algo%20101%20EN.md) the original Chinese-language document and used google translate to translate it for research purposes. It containes a detailed description of the idea of the algorithms used for ranking including the purposes and underlying ‘values’ that drive the development at TikTok.
+
+## Code/data audit:
+
+You can, of course, also apply more technical approaches to platforms and run analyses based on code, such asopen source code or reverse engineering specific applications or platform architectures.
+
+### Open Source Code
+
+While there are few open sources packages by [TikTok itself](https://github.com/tiktok), you can find a selection on Github, for example in the [ByteDance](https://github.com/orgs/bytedance/repositories?type=all) repositories. Besides data related to research (see above), you can find documentation for [Software Development Kit (SDK)](https://github.com/bytedance/TiktokBusinessPlugin) that other apps can use to share data with TikTok as well as libraries hinting at the architecture used at ByteDance in general or TikTok (or is chinese equivalent Douyin) specifically.
+
+Other platforms are more open about the code they develop and the products they use. For example, X (Twitter) has published a version of the code of their [recommendation engine](https://github.com/twitter/the-algorithm), although responses about the transparency it offers are [mixed](https://www.engadget.com/what-did-twitters-open-source-algorithm-actually-reveal-not-a-lot-194652809.html?guccounter=1)
+
+On a more technical level, [Facebook](https://github.com/facebook/) with [react](https://github.com/facebook/react) and [zstd](https://github.com/facebook/zstd) and [Google](https://github.com/google/) with a variety of contributions have also openly contributed and fostered open source projects and research which also, in part, power their own platforms.
+
+### Reverse Engineering
+
+Reverse Engineering is a process through which researchers try to understand the logic of a program, service or app that is in some way obfuscated. For instance, this could mean that the code is compiled and the high-level logic is already translated in low-level code – which can make it harder for humans to understand. In other cases, developers intentionally obfuscate code to prevent others from replicating their work, notably when no compiling is involved, as is often the case on the web where JavaScript Code and HTML are normally provided in a form that are reproducible.
+
+Reverse Engineering is helpful when analyzing apps like TikTok. For Android Apps, [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF) provides reverse engineering and other security tools. For example, these tools automatically scan the code for known trackers and libraries. In addition, MobSF can help provide the results of common Android decompiling tools.
+
+![Example results from mobsf](../../static/img/platforms/data-collection-intro/mobsf_scorecard.png)
+
+## API Access
+
+Many platforms allow researchers to access their platforms, or specific subsystems of their platforms, through APIs. While data access through APIs is subject to changes at the platform’s digression, very large online platforms operating in the European Union are legally required to provide APIs for public content. While X (Twitter) and Reddit are currently lacking in compliance, other platforms like Telegram or YouTube are still accessible through APIs. Moreover, there are third party platforms like [RapidAPI](https://rapidapi.com/hub) that provide “unofficial APIs” for several networks – please do be mindful how and for what research purposes you access these.
+
+### Hidden APIs
+
+Web based platforms offer a simple way to peak into their inner workings. Familiarize yourself with the respective [developer tools](https://www.youtube.com/watch?v=wcFnnxfA70g) to understand how a platform's API and REST works. You can use the network panel in the developer tools to see the "[hidden APIs]"(We https://ianlondon.github.io/blog/web-scraping-discovering-hidden-apis/), the messages exchanged between your browser and the platform that contain the data shown to you, mostly in a structured format.
+
+[The Markup](https://themarkup.org/levelup/2023/03/03/journalists-you-should-be-looking-for-undocumented-apis-heres-how-to-start) has a great walkthrough on how they used APIs to uncover a story.
+If you want to dig a bit deeper and don't want to check all APIs manually you can use tools like [mitmproxy2swagger](https://github.com/alufers/mitmproxy2swagger) to systematically analyse a website. To do so, you browse a website with the developer tools, open the network tab and surf the website. Afterwards you can download the HAR file as described in the mitmproxy2swagger documentation and use the following command to create a systematic description of the API.
+
+`mitmproxy2swagger -i ~/Downloads/www.tiktok.com.har -o ~/Downloads/tt_web_api.yml -p "https://www.tiktok.com/api/"`
+
+The YAML file you will receive is an API definition in a style calld "swagger". If you paste the data to an appropriate [editor](https://editor.swagger.io/) you will get an overview of the data, that the tiktok web application sends and receives:
+![Example of the tiktok API overview with swagger](../../static/img/platforms/data-collection-intro/swagger_tiktok_example.gif)
+
+## Data Donations
+
+To understand the experience of actual users of the platforms, first-hand data often provides you with the richest and most illustrative insight.
+
+To collect and analyze user data, you can revert to data donations. Data donations are sensitive and therefore require researchers to be rigorous, transparent, and accountable for how they use the data that they ask users to hand over. Today, users can often access data that a specific platform has stored about them – in the European Union by filing a data access request based on the General Data Protection Regulation (GDPR) . For TikTok, a data donation approach has been used by the [DataSkope](https://www.nytimes.com/2021/12/05/business/media/tiktok-algorithm.html) project as well as by academic researchers, who recruited participants via Facebook and then asked them to share their TikTok data, results are captured in [Likes and Fragments: Examining Perceptions of Time Spent on TikTok](https://arxiv.org/abs/2303.02041).
+
+This method comes with certain drawbacks: you need to consider cost as well as size of your needed data set. Moreover, for TikTok specifically, researchers found that the data that users can download only presents a selection of the data the platform does in fact collect.
+
+## Scraping
+
+Another common method for gathering information about a platform and content that is published on it is scraping. Scraping is a way of extracting data from websites or apps in a structured form to replicate the content available on a platform. This allows researchers to gain insights into different aspects such as: Networks of actors, content published on specific topic, filtering or prioritization mechanisms to present content on the platform and more. For example, we have scraped the public TikTok website to better understand the topics or pieces of content that are going “viral” in Germany in a [week-by-week](https://martin.degeling.com/snv/fyp-hashtags-by-week/) analysis. Other researchers have leveraged scraping to understand the development in different countries or learn more about TikTok’s [approach to blocking and deleting content](https://tiktok.tracking.exposed/). An in-depth how to guide for web scraping can be found on this [Data Knowledge Hub](web-scraping-intro).

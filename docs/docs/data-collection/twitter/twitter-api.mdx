@@ -1,0 +1,178 @@
+---
+title: "X (Twitter) API"
+---
+
+# Example: X (Twitter) API
+
+import AuthorCard from "@site/src/components/AuthorCard.js";
+import LevelChip from "@site/src/components/LevelChip.js";
+
+<LevelChip level="Beginner"></LevelChip>
+
+<AuthorCard
+  name="Andreas Neumeier"
+  avatar="AN"
+  avatarSrc={require("@site/static/img/contributors/neumeier.png").default}
+  position="SPARTA | University of the German Federal Armed Forces"
+  website="https://www.unibw.de/politikwissenschaft/professuren/lehrstuhl-invr/andreas_neumeier"
+  linkedin="https://www.linkedin.com/in/andreas-neumeier/"
+></AuthorCard>
+
+<AuthorCard
+  name="Jasmin Riedl"
+  avatar="JR"
+  avatarSrc={require("@site/static/img/contributors/riedl.png").default}
+  position="SPARTA | University of the German Federal Armed Forces"
+  twitter="https://twitter.com/RiedlJasmin"
+  website="https://www.unibw.de/jasmin.riedl"
+></AuthorCard>
+
+<AuthorCard
+  name="Wiebke Drews"
+  avatar="WD"
+  avatarSrc={require("@site/static/img/contributors/drews.png").default}
+  position="SPARTA | University of the German Federal Armed Forces"
+  twitter="https://twitter.com/wiebkedrews"
+  website="www.wiebkedrews.com"
+></AuthorCard>
+
+## How to access data via the Twitter API v2
+
+Developers can access a wide range of X (Twitter) data, including Tweets, users, and more features with the Twitter API v2. The API provides vast opportunities, whether to gather insights, build a new application, or improve an existing one. Version 2 of the Twitter API offers a more flexible and scalable approach to accessing Twitter data, and the [Python implementation](https://github.com/UnibwSparta/twitterapi) aims to simplify this process for Python developers. Documentation for the Python package is available at [https://unibwsparta.github.io/twitterapi/index.html](https://unibwsparta.github.io/twitterapi/index.html).
+
+## 1. Prerequisites
+
+### 1.1. Software & Tools
+
+- Python (3.8 or higher)
+- Pip (Python package installer)
+
+### 1.2 Twitter Credentials
+
+To use the Twitter API, you must have a developer account on Twitter, where you'll obtain the Bearer Token.
+
+## 2. Installation
+
+Install the required Python package using pip:
+
+```bash
+pip3 install sparta-twitterapi
+```
+
+## 3. Basic Usage
+
+### 3.1 Authentication
+
+Authentication is required before making any requests to the API. The library reads the Bearer Token from an environment variable named `BEARER_TOKEN`. You can set the environment variable directly or through the `os` library in the Python code before the imports.
+
+Set the environment variable in bash:
+
+```bash
+export BEARER_TOKEN="xxxxxxxxxxx"
+```
+
+Set the environment variable in python:
+
+```python
+import os
+os.environ["BEARER_TOKEN"] = "xxxxxxxxxxx"
+```
+
+### 3.2 First example
+
+This script retrieves two tweets defined by the tweet ID and outputs their content on the console.
+
+```python
+import os
+os.environ["BEARER_TOKEN"] = "XXXXXXXXXXXXXX"
+from sparta.twitterapi.tweets.tweets import get_tweets_by_id
+
+async for tweet_response in get_tweets_by_id(['1511275800758300675', '1546866845180887040']):
+    print(tweet_response.tweet)
+```
+
+## 4. Available Endpoints
+
+The `sparta-twitterapi` package provides several endpoints organized into three core categories: These consist of **Compliance, Users, and Tweets**. It also offers a data model for obtaining tweets that is resistant to API changes. Here’s a comprehensive overview. For further details, refer to the official [documentation](https://unibwsparta.github.io/twitterapi/).
+
+### 4.1 Data Model
+
+To account for differences between X’s (Twitter’s) API description and its actual responses, we devised a **Pydantic model** to represent tweet responses as the original classes provided by X (Twitter) couldn’t be used. Every tweet includes two attributes. `tweet_response.tweet` comprises the original tweet object, including details about the tweet, such as its id, creation date, text, entities, and more. The extension objects linked with the tweet, such as retweeted tweets, quoted tweets, users, media, polls, and places, are included in `tweets_response.include`s. Find all tweet attributes and their corresponding descriptions [here](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/tweet).
+
+### 4.2 Tweets Endpoints
+
+The **twitterapi package** provides various endpoints in the "Tweets" category that serve different functions and requirements associated with Twitter posts. Developers can utilize these endpoints related to Tweets to obtain comprehensive tools for harnessing, analyzing, and managing the vast amount of information flowing through Twitter every moment.
+
+In the endpoints provided by the Python library, all available [fields](https://developer.twitter.com/en/docs/twitter-api/fields) and [extensions](https://developer.twitter.com/en/docs/twitter-api/expansions) are retrieved by default. For comprehensive details, parameter explanations, and best practices, you should refer to the official `sparta-twitterapi` package [documentation](https://unibwsparta.github.io/twitterapi/). Here is a thorough outline of the endpoints that are available in this category:
+
+#### Filtered Stream Endpoint
+
+The filtered stream endpoint group is designed for developers who wish to modify the public tweets' real-time stream based on specific criteria. This endpoint group allows users to follow real-time conversations on specific topics or events and observe trend development. This group includes several endpoints allowing:
+
+- Creating and managing rules. Apply a set of rules to filter real-time tweets and return only the tweets that fulfill the criteria.
+- Connect to the filtered stream.
+
+#### Full-archive Search Endpoint
+
+The full-archive search endpoint is available exclusively to projects with Academic Research or Enterprise access. It provides the capability to:
+
+- Access all public Tweets from the archive, starting with the very first Tweet in March 2006.
+- Retrieve them based on specific search queries.
+
+#### Quote Tweets Lookup Endpoint
+
+Retrieving Quote Tweets that are linked to a specific Tweet ID. This allows developers and researchers to quickly extract the entire conversation related to a certain Tweet, along with all its Quote Tweets, which promotes a thorough comprehension of the discussions.
+
+#### Recent Search Endpoint
+
+The recent search endpoint provides access to:
+
+- Filtered public tweets posted in the last week.
+
+#### Retweeted By Endpoint
+
+Users can utilize the Retweets lookup endpoint to:
+
+- Obtain a list of accounts that retweeted a specific Tweet.
+
+#### Tweets Endpoint
+
+This set of endpoints is designed to be simple, offering methods to:
+
+Retrieve either a single Tweet or a group of Tweets identified by a Tweet ID.
+Despite the simplicity of this endpoint, it's essential for various tasks, such as retrieving updated Tweet details, checking a Tweet's availability, reviewing its edit history, and managing compliance events.
+
+### 4.3 Users Endpoints
+
+The **twitterapi package** provides various endpoints under the 'Users' category. These endpoints are designed to offer insights and data about Twitter users. Below is a detailed breakdown of the available endpoints in this category:
+
+#### Followers Lookup Endpoint
+
+The Followers Lookup Endpoint is designed to unravel and analyze the relationships between Twitter users. This process is commonly referred to as network analysis. There are two primary endpoints in this category:
+
+- `get_following_by_id`: This endpoint returns user objects that represent the users that a specific user is following. It provides a list of users whom the queried user has chosen to follow.
+
+- `get_followers_by_id`: On the other hand, this endpoint returns user objects that represent the users who follow the specified user. It gives a list of users who follow the queried user.
+
+Both of these endpoints provide valuable insights into the connection dynamics of specific accounts by shedding light on user relationships.
+
+#### User Lookup Endpoint
+
+The User Lookup Endpoint is a service that retrieves details of one or more users based on either a user ID (`get_users_by_ids`) or username (`get_users_by_username`). This endpoint uses the GET method to return the following:
+
+User Details: The response typically includes user objects that contain fields such as follower count, location, pinned Tweet ID, and profile bio, among others. These fields provide a comprehensive view of the user's public profile and preferences. Find all user
+attributes and their corresponding descriptions [here](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/user).
+
+Developers, who seek to gain insights into user behavior, relationships, and characteristics on Twitter, will find these Users endpoints particularly useful. Consult the official [documentation](https://unibwsparta.github.io/twitterapi/modules/users.user.html) of the twitterapi package to gain a more detailed comprehension and explore other preferences and criteria.
+
+### 4.4 Compliance Endpoints
+
+For ensuring compliance with events, developers, who store X (Twitter) data offline, must reflect the real-time state and user intent on X (Twitter). This involves updating the data whenever users delete or edit their tweets, protect their accounts, or make other changes. There are **two methods** to perform this task:
+
+#### Compliance Event Stream
+
+The Compliance Event Stream provides real-time updates on any compliance-related events, ensuring that any stored data is kept in sync with the live state on X (Twitter).
+
+#### Batch Compliance Mode
+
+Batch compliance endpoints are valuable for developers managing extensive datasets. By uploading sizable collections of Tweet or user IDs, you can quickly determine the compliance status of each entry. Identifying data that requires action ensures the compliance of your datasets. It is important to note that the batch compliance endpoints are specifically designed for their intended purposes. **Any use of these endpoints outside of their intended purposes is strictly prohibited** and could result in enforcement actions taken by X (Twitter).
