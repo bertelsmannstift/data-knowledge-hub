@@ -73,8 +73,8 @@ The following projects are available in the repository:
 
 | Project                   | Description                            | Language             | Plattform   | Code |
 | ------------------------- | -------------------------------------- | -------------------- | ----------- | ---- |
-| `tiktok-scraping`         | Collect data on TikTok using puppeteer | JavaScript           | TikTok      | [Code](https://github.com/bertelsmannstift/data-knowledge-hub/projects/tiktok-hashtags) |
-| `tiktok-hashtag-analysis` | Analyse TikTok Hashtags                | Python               | TikTok      | [Code](https://github.com/bertelsmannstift/data-knowledge-hub/projects/tiktok-hashtags) |
+| `tiktok-scraping`         | Collect data on TikTok using puppeteer | JavaScript           | TikTok      | [Code](https://github.com/bertelsmannstift/data-knowledge-hub/tree/main/projects/tiktok-hashtags) |
+| `tiktok-hashtag-analysis` | Analyse TikTok Hashtags                | Python               | TikTok      | [Code](https://github.com/bertelsmannstift/data-knowledge-hub/tree/main/projects/tiktok-hashtags) |
 | `blog-webscraping`        | Webscraping using rvest and selenium   | R                    | Blogs       | [Code](https://github.com/bertelsmannstift/data-knowledge-hub/tree/main/projects/website-scraping) |
 | `twitter-streaming`       | Large-scale data collection on Twitter | Python               | Twitter / X | [Repository](https://github.com/UnibwSparta/twitterapi) |
 | `twitter-social-network`  | Social Network Analysis with R         | R                    | Twitter / X | [Code](https://github.com/bertelsmannstift/data-knowledge-hub/tree/main/projects/social-network-analysis) |
