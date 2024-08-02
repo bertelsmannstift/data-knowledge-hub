@@ -1,0 +1,19 @@
+{
+  "name": "knowledge_hub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/puppeteer": "^7.0.4",
+    "node-json-db": "^2.2.0",
+    "puppeteer": "^20.9.0"
+  },
+  "devDependencies": {
+    "@types/puppeteer": "^7.0.4"
+  }
+}
