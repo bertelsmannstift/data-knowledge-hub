@@ -1,4 +1,4 @@
-# Data Knowledge Hub for Monitoring Online Discourse
+# Data Knowledge Hub for Researching Online Discourse
 
 The Data Knowledge Hub is an initiative designed to serve as a central resource for those interested in monitoring social media and online discourse. It is aimed at researchers, social scientists, data scientists, journalists, practitioners, and policymakers.
 
