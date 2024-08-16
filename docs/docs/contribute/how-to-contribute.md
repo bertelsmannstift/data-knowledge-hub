@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # How to contribute?
 
-## Options for contributing to the knowledge hub
+## Options for contributing to the data knowledge hub
 
 ### Option 1: Pull the project and create a merge request on GitHub
 
