@@ -14,6 +14,6 @@ To help you get started and inspired with social media analyses, we’ve collect
 
 :::info Open for contributions
 
-We welcome contributions on a rolling basis. Have you done an analysis or project you want to share? Do you want to contribute a primer for a specific method? Get in touch with us at [upgrade.democracy@bertelsmann-stiftung.de](mailto:upgrade.democracy@bertelsmann-stiftung.de)
+We welcome contributions on a rolling basis. Have you done an analysis or a research project you want to share? Do you want to contribute a primer for a specific method? Get in touch with us at [upgrade.democracy@bertelsmann-stiftung.de](mailto:upgrade.democracy@bertelsmann-stiftung.de)
 
 :::
