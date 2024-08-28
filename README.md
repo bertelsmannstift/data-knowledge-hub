@@ -87,7 +87,7 @@ We welcome contributions! Please see our [contributing guide](https://data-knowl
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-The content is licensed under the Creative Commons Attribution 4.0 International License.
+The content is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 
 ## Acknowledgments
 
