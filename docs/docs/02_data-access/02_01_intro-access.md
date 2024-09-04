@@ -4,9 +4,9 @@ sidebar_position: 0
 
 # Introduction to researching and monitoring online discourse
 
-To help you get started and better navigate the research landscape of social media monitoring (SMM) and researching online discourse more broadly, we’ve collected a first set of chapters that aim to provide orientation and guidance to researchers and practitioners exploring various options and dimensions of social media monitoring. We welcome additional content and have added a selection of chapters below that would make for great contributions.
+Once you're familiar with the relevant [ethical considerations](01_02_ethical-considerations) and [legal framework](01_03_legal-considerations) for researching online discourse, the next step is accessing the actual data. To support your research, we’ve compiled an overview of the data access options available for each platform, helping you navigate the specific processes and policies that govern how data can be retrieved and used:
 
-**[How and When to Access Data for Social Media Monitoring](access)**: This chapter provides an introduction to accessing data for social media monitoring through the lens of platform regulations and policies. 
+**[How and When to Access Data for Social Media Monitoring](02_02_overview-access)**: This chapter provides an introduction to accessing data for social media monitoring through the lens of platform regulations and policies. 
 
 :::info Open for contributions
 
