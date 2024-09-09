@@ -1,0 +1,46 @@
+---
+sidebar_position: 1
+---
+
+# How to contribute?
+
+## Options for contributing to the data knowledge hub
+
+The Data Knowledge Hub is a collaborative open-source project. We always welcome contributions from the community – either via GitHub or by contacting us directly. To make participation in our community an open, welcoming, diverse, inclusive, and healthy experience for everyone, the Data Knowledge Hub is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
+
+### Option 1: Pull the project and create a merge request on GitHub
+
+Here's how you can contribute directly over GitHub:
+
+1.	Open the [Data Knowledge Hub on GitHub](https://github.com/bertelsmannstift/data-knowledge-hub)
+2.	Fork your own copy of the repository to your personal account
+3.	Make your changes and commit them.
+4.	Open a pull request on GitHub and fill out all the necessary information. 
+5.	Wait for the maintainers to review your changes.
+6.	Once your changes are approved, they will be merged into the main branch.
+
+**Please note:** Especially minor edits, corrections or smaller additions can be submitted very conveniently via GitHub. For longer contributions or a series of changes we would recommend that you reach out to us via Option 2.
+
+### Option 2: Contact us and we will integrate your changes and content together
+
+We welcome contributions on a rolling basis. Whether you have a practical example you want to share, or just an idea for any content that is missing: Get in touch with us at [upgrade.democracy@bertelsmann-stiftung.de](mailto:upgrade.democracy@bertelsmann-stiftung.de)
+
+## What content are we looking for currently?
+
+Contributions can take on a lot of different forms. In general, we are looking for:
+
+- **Python or R Notebooks**: Well-commented notebooks illustrating libraries or specific analysis processes. 
+- **Practical Guidelines and Processes**: Short blog posts (~1000-2000 words) with code examples, checklists and descriptions of processes. We are also interested in overviews or link collections, e.g. data access points or insightful research.
+- **Introductory Content and Context**: Essays (~3000 words) providing context and practical information - such as legal and ethical guidelines, profiles for specific platforms, or research methodologies. 
+
+> [!IMPORTANT]
+> Right now, we would be particularly interested in including and discussing chapters on:
+>
+>- Data access and ethics:
+>  - Data access rights beyond the European Union and the U.S.
+>  - How to deal with dark socials?
+>- Data collection: sock puppet, snowball sampling and other innovative approaches
+>- Examples of data collection: Facebook, Instagram, YouTube, Fediverse and others
+>- Examples of data analysis: Topic modelling, sentiment analysis, geospatial analysis, infrastructure as code, and others
+>- Additional aspects that benefit from monitoring as a research method
+>
