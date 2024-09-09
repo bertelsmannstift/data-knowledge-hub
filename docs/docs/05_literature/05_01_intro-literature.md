@@ -7,7 +7,7 @@ sidebar_position: 0
 # Literature and illustrative research
 
 
-**[Literature Overview](05_02_literature-overview)**: This chapter offers an academic synthesis of the current scientific discourse around social media monitoring. By combining insights from journals, publications, and key policy documents, it helps you read up on foundational references and get a sense of the academic landscape in this field.
+**[Literature Overview](05_02_literature-overview.mdx)**: This chapter offers an academic synthesis of the current scientific discourse around social media monitoring. By combining insights from journals, publications, and key policy documents, it helps you read up on foundational references and get a sense of the academic landscape in this field.
 
 :::info Open for contributions
 
