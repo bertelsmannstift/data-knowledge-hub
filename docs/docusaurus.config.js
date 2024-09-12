@@ -45,7 +45,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'background-rationale',
             to: '/docs/intro',
             position: 'left',
             label: 'Explore',
@@ -66,7 +66,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             items: [
               {
                 label: 'Knowledge',
-                to: '/docs/intro',
+                to: '/docs/background-rationale',
               },
               {
                 label: 'Contribute',

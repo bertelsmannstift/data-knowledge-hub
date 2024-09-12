@@ -5,9 +5,9 @@ title: TikTok Hashtag Analysis
 
 # Data Collection and Analysis of TikTok Hashtags with JavaScript and Phyton
 
-import AuthorCard from "../../src/components/AuthorCard.js";
-import LevelChip from "../../src/components/LevelChip.js";
-import VideoCard from "../../src/components/VideoCard.js";
+import AuthorCard from "../../../src/components/AuthorCard.js";
+import LevelChip from "../../../src/components/LevelChip.js";
+import VideoCard from "../../../src/components/VideoCard.js";
 
 <LevelChip level="Beginner to Advanced"></LevelChip>
 <AuthorCard
@@ -69,7 +69,7 @@ run();
 
 This should bring up a browser windows like this:
 
-![](../../static/img/methods/tiktok-analysis/20230628145632.png)
+![](../../../static/img/methods/tiktok-analysis/20230628145632.png)
 
 This basic process, already allows you to garner information about the videos TikTok would like to show you- even though you can’t see them. You can right-click on the page and select “view source” (or press ctrl+u) to see the HTML source code of the site. Search for “ItemModule” and you will be able to access information about the videos in a structured JSON-format.
 
@@ -89,7 +89,7 @@ Object.keys(initinfo.ItemModule).forEach(async (el, c) => {
 
 If you research requires you to get data on more videos, you have to interact with the website. When accessing the site, you will be initially prompted by a login popup, which you can close automatically.
 
-![](../../static/img/methods/tiktok-analysis/close_login.gif)
+![](../../../static/img/methods/tiktok-analysis/close_login.gif)
 
 If you are working with Chrome, you can use the developer settings to find out how you can manipulate the button with puppeteer. First open the developer console with F12, then right click the close icon, select “Inspect” and find the parent element that seems unique. In this case there is a `div` element with the attribute `data-e2e="modal-close-inner-button"`.
 In puppeteer, you can use this attribute to identify the “X” and click it like this:
@@ -186,7 +186,7 @@ print("Average views:", average)
 
 This will result in `Average views: 20519932.70042194`, or in plainer terms: more than 20 million views per video on average. That seems like a lot. A histogram plot shows that the data is not evenly distributed. There are a few videos with a huge number of views. Outliers from the rest.
 
-![](../../static/img/methods/tiktok-analysis/20230704094446.png)
+![](../../../static/img/methods/tiktok-analysis/20230704094446.png)
 
 Because of this distribution the median will therefore give a better idea of the 'average'
 
@@ -197,7 +197,7 @@ print("Median views:", median)
 
 You can also limit the histogram plot to up to 10 million views and see that the majority of videos shown on the FYP for non-logged in web users is focused on videos that already had a large audience.
 
-![](../../static/img/methods/tiktok-analysis/20230704094035.png)
+![](../../../static/img/methods/tiktok-analysis/20230704094035.png)
 
 ### Hashtag Analysis
 
@@ -228,7 +228,7 @@ You will find that 17% of the videos do not use hashtags.
 
 If you go ahead and plot the network of hashtag combinations, you will get a graph like this:
 
-![](../../static/img/methods/tiktok-analysis/20230704103025.png)
+![](../../../static/img/methods/tiktok-analysis/20230704103025.png)
 
 Similarly, you can also look at the distribution of hashtags by sorting the list and printing the 20 most common hashtags.
 
@@ -275,7 +275,7 @@ for hashtag in hashtag_nodes:
 net.show('selected_hashtags.html')
 ```
 
-![](../../static/img/methods/tiktok-analysis/20230704090400.png)
+![](../../../static/img/methods/tiktok-analysis/20230704090400.png)
 
 ## What to do with the results
 

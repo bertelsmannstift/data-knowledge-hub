@@ -5,9 +5,9 @@ sidebar_position: 2
 
 # Example: Webscraping
 
-import AuthorCard from "../../src/components/AuthorCard.js";
-import LevelChip from "../../src/components/LevelChip.js";
-import VideoCard from "../../src/components/VideoCard.js";
+import AuthorCard from "../../../src/components/AuthorCard.js";
+import LevelChip from "../../../src/components/LevelChip.js";
+import VideoCard from "../../../src/components/VideoCard.js";
 
 <LevelChip level="Beginner"></LevelChip>
 
@@ -85,7 +85,7 @@ An overview of different CSS selector patterns can be found at [W3Schools](https
 To make it easier to choose the right selectors, you can use the Google Chrome extension [SelectorGadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb): By simply selecting and deselecting on a web page, the right CSS selector for the right segment can often be found quickly, as in the example of the title of each article here. Selecting the title and deselecting the ticker shows, that currently 20 titles are being highlighted using the selector `image-left .title`
 :::
 
-![Selectorgadget example on Röpers page](../../static/img/platforms/web-scraping-intro/roeper_page_example.png)
+![Selectorgadget example on Röpers page](../../../static/img/platforms/web-scraping-intro/roeper_page_example.png)
 _Selectorgadget example on Röpers page_
 
 Using the CSS selectors, you can now determine the segments that are relevant to you – afterwards, you will write a function that will store all the relevant information in one record. `rvest` also has useful support functions here, such as `html_text()`. This function allows you to convert html types into simple text vectors; `html_text2()` extends this function and additionally removes unnecessary white spaces.
@@ -131,7 +131,7 @@ page %>%
 
 In most cases, not all content relevant to the investigation can be found on one page but will be distributed over several pages. In this example, you can find over 200 pages that can be extracted. Either way, you can either manually compile the pages you want to scrape or extract them automatically and reproducibly from the overview page.
 
-![](../../static/img/platforms/web-scraping-intro/roeper_next_page.png)
+![](../../../static/img/platforms/web-scraping-intro/roeper_next_page.png)
 _Next page example on Röpers page_
 
 Using the CSS selector `.page-numbers` we can extract all page numbers - however, here we also extract the `Next` navigation object. To extract the relevant information from these objects (here for example the last number) you must use regular expressions. **Regular expressions** are certain terms and symbols that search for patterns in a text, in the following example a number that is not followed by another number.
@@ -224,7 +224,7 @@ all_articles_summary %>%
        y = "Posts", x = NULL)
 ```
 
-![Number of article per month on the german pro-russion propaganda website antispiegel.ru by Thomas Röper](../../static/img/platforms/web-scraping-intro/plot_1.png)
+![Number of article per month on the german pro-russion propaganda website antispiegel.ru by Thomas Röper](../../../static/img/platforms/web-scraping-intro/plot_1.png)
 _Number of article per month on the german pro-russion propaganda website antispiegel.ru by Thomas Röper_
 
 The example of Röper illustrates how to handle data from particularly active sites. While you didn’t scrape the number of comments via your function, you can do so by extracting the number of comments from the raw values in the column `raw`. Thus, you avoid further scraping of the data.
@@ -258,7 +258,7 @@ article_comments %>%
        subtitle = glue("Posts until {today() %>% format('%B %Y')}"))
 ```
 
-![Histogram of number of comments under each article from anti-spiegel.ru](../../static/img/platforms/web-scraping-intro/plot_2.png)
+![Histogram of number of comments under each article from anti-spiegel.ru](../../../static/img/platforms/web-scraping-intro/plot_2.png)
 _Histogram of number of comments under each article from anti-spiegel.ru_
 
 As you can see, the most discussed article has 495 (`r article_comments %>% top_n(1, comments) %>% pull(comments)`) user comments with the headline "Putins Rede zur Vereinigung Russlands mit den ehemals ukrainischen Gebieten" (`r article_comments %>% top_n(1, comments) %>% pull(title)`) from 01. October 2022 (`r article_comments %>% top_n(1, comments) %>% pull(date) %>% format("%d. %B %Y")`). Most of the articles are not commented.
@@ -416,7 +416,7 @@ Not all sites are built this way, in fact it has probably become more common to 
 
 Content scraped via `rvest` shows that reactions cannot be scraped – it simply shows an empty value.
 
-![AUF1 Screenshot with Reactions](../../static/img/platforms/web-scraping-intro/AUF1_reactions.png)
+![AUF1 Screenshot with Reactions](../../../static/img/platforms/web-scraping-intro/AUF1_reactions.png)
 _AUF1 Screenshot with Reactions_
 
 ```r
