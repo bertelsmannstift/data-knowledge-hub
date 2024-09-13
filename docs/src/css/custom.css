@@ -45,3 +45,25 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   top: 0;
   left: 0;
 }
+
+/**
+.theme-doc-sidebar-item-link > a  {
+  color: red !important;
+}
+
+.theme-doc-sidebar-item-category-level-1 > div > a {
+  color: green !important;
+} 
+
+.theme-doc-sidebar-item-category-level-2 > div > a {
+  color: yellow !important;
+} 
+*/
+
+.theme-doc-sidebar-item-link > .menu__link--active {
+  background-color: #094282 !important;
+}
+
+.theme-doc-sidebar-item-link > .menu__link--active {
+  color: #fff !important;
+}
