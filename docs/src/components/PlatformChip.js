@@ -13,7 +13,7 @@ const PlatformChip = ({ platform  }) => (
     paddingRight: "15px",
     fontSize: "14px",
     fontWeight: "600",
-    margin: "10px",
+    margin: "5px",
   }}>
     Platform: {platform}
   </div>

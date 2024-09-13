@@ -1,11 +1,11 @@
 import React from "react";
 
-const LevelChip = ({ level  }) => (
-  // make a chip that displays the level of knowledge needed
+const LanguageChip = ({ lang  }) => (
+  // make a chip that displays the programming language
   <div style={{
     display: "inline-block",
-    backgroundColor: "black",
-    color: "#fff",
+    backgroundColor: "#6EC2F9",
+    color: "black",
     borderRadius: "25px",
     paddingTop: "5px",
     paddingBottom: "5px",
@@ -15,9 +15,9 @@ const LevelChip = ({ level  }) => (
     fontWeight: "600",
     margin: "5px",
   }}>
-    Level required: {level}
+    Language: {lang}
   </div>
 
 );
 
-export default LevelChip;
+export default LanguageChip;
