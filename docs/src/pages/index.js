@@ -22,7 +22,7 @@ function HomepageHeader() {
           </Link>
           <Link
             className="button button--secondary button--lg background-transparent"
-            to="/docs/contribute/how-to-contribute">
+            to="/docs/contribute/06_01_how-to-contribute">
             Contribute
           </Link>
         </div>

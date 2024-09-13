@@ -46,11 +46,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           {
             type: 'doc',
             docId: 'background-rationale',
-            to: '/docs/intro',
+            to: '/docs/background-rationale',
             position: 'left',
             label: 'Explore',
           },
-          {to: '/docs/contribute/how-to-contribute', label: 'Contribute', position: 'left'},
+          {to: '/docs/contribute/06_01_how-to-contribute', label: 'Contribute', position: 'left'},
           {
             href: 'https://upgradedemocracy.de/en/',
             label: 'About the project',
@@ -70,7 +70,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
               },
               {
                 label: 'Contribute',
-                to: '/blog',
+                to: '/docs/contribute/06_01_how-to-contribute',
               },
               { label: 'Imprint', href: 'https://upgradedemocracy.de/en/imprint/' },
             ],
@@ -97,7 +97,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             items: [
               {
                 label: 'Contributors',
-                to: '/docs/contribute/contributors',
+                to: '/docs/contribute/06_02_community',
               },
             ],
           },
