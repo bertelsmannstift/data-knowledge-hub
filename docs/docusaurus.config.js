@@ -32,7 +32,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       }),
     ],
   ],
-
+  plugins: [require.resolve('docusaurus-lunr-search')],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -45,12 +45,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         items: [
           {
             type: 'doc',
-            docId: 'intro',
-            to: '/docs/intro',
+            docId: 'background-rationale',
+            to: '/docs/background-rationale',
             position: 'left',
             label: 'Explore',
           },
-          {to: '/docs/contribute/how-to-contribute', label: 'Contribute', position: 'left'},
+          {to: '/docs/contribute/06_01_how-to-contribute', label: 'Contribute', position: 'left'},
           {
             href: 'https://upgradedemocracy.de/en/',
             label: 'About the project',
@@ -66,11 +66,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             items: [
               {
                 label: 'Knowledge',
-                to: '/docs/intro',
+                to: '/docs/background-rationale',
               },
               {
                 label: 'Contribute',
-                to: '/blog',
+                to: '/docs/contribute/06_01_how-to-contribute',
               },
               { label: 'Imprint', href: 'https://upgradedemocracy.de/en/imprint/' },
             ],
@@ -97,12 +97,17 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             items: [
               {
                 label: 'Contributors',
-                to: '/docs/contribute/contributors',
+                to: '/docs/contribute/06_02_community',
               },
             ],
           },
         ],
         copyright: `Data Knowledge Hub for Monitoring Online Discourse  © ${new Date().getFullYear()} - The project is supported by the Bertelsmann Stiftung`,
+      },
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
       },
       prism: {
         theme: lightCodeTheme,
