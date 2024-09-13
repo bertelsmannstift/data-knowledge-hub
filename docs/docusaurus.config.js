@@ -104,6 +104,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         ],
         copyright: `Data Knowledge Hub for Monitoring Online Discourse  © ${new Date().getFullYear()} - The project is supported by the Bertelsmann Stiftung`,
       },
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
+      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,

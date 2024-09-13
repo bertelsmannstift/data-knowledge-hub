@@ -14,6 +14,8 @@
   --ifm-color-primary-lighter: #6EC2F9;
   --ifm-color-primary-lightest: #6EC2F9;
   --ifm-code-font-size: 95%;
+  --ifm-menu-color-active: #2C60AD;
+  --ifm-menu-color-background-active: #6EC2F9;
 }
 
 .docusaurus-highlight-code-line {
@@ -59,6 +61,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   color: yellow !important;
 } 
 */
+
 
 .theme-doc-sidebar-item-link > .menu__link--active {
   background-color: #094282 !important;
