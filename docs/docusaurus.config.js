@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   title: 'Data Knowledge Hub for Monitoring Online Discourse',
   tagline: "The Data Knowledge Hub for Monitoring Online Discourse (Data Knowledge Hub) is an initiative that aims to provide a central resource for researchers, social scientists, data scientists, journalists, practitioners, and policy makers interested in monitoring social media and online discourse more broadly.",
   url: 'https://www.data-knowledge-hub.com',
-  baseUrl: '/',
+  baseUrl: '/data-knowledge-hub/',
   customFields: {
     staticDirectories: ['static'], 
   },
