@@ -4,8 +4,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (module.exports = {
-  title: 'Data Knowledge Hub for Monitoring Online Discourse',
-  tagline: "The Data Knowledge Hub for Monitoring Online Discourse (Data Knowledge Hub) is an initiative that aims to provide a central resource for researchers, social scientists, data scientists, journalists, practitioners, and policy makers interested in monitoring social media and online discourse more broadly.",
+  title: 'Data Knowledge Hub for Researching Online Discourse',
+  tagline: "The Data Knowledge Hub for Researching Online Discourse (Data Knowledge Hub) is an initiative that aims to provide a central resource for researchers, social scientists, data scientists, journalists, practitioners, and policymakers interested in independently researching social media and online discourse more broadly.",
   url: 'https://www.data-knowledge-hub.com',
   baseUrl: '/data-knowledge-hub/',
   customFields: {
@@ -102,7 +102,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             ],
           },
         ],
-        copyright: `Data Knowledge Hub for Monitoring Online Discourse  © ${new Date().getFullYear()} - The project is supported by the Bertelsmann Stiftung`,
+        copyright: `Data Knowledge Hub for Researching Online Discourse  © ${new Date().getFullYear()} - The project is supported by the Bertelsmann Stiftung`,
       },
       colorMode: {
         defaultMode: 'light',
