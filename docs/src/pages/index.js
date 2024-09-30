@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <Layout
       title={`Welcome! ${siteConfig.title}`}
-      description="The Data Knowledge Hub for Monitoring Online Discourse (Data Knowledge Hub) is an initiative that aims to provide a central resource for researchers, social scientists, data scientists, practitioners, and policy makers interested in monitoring disinformation on social media platforms.">
+      description="The Data Knowledge Hub for Researching Online Discourse (Data Knowledge Hub) is an initiative that aims to provide a central resource for researchers, social scientists, data scientists, practitioners, and policymakers interested in independently researching disinformation on social media platforms.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

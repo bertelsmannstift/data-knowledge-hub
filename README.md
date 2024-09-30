@@ -1,18 +1,18 @@
 # Data Knowledge Hub for Researching Online Discourse
 
-The Data Knowledge Hub is an initiative designed to serve as a central resource for those interested in monitoring social media and online discourse. It is aimed at researchers, social scientists, data scientists, journalists, practitioners, and policymakers.
+The Data Knowledge Hub is an initiative designed to serve as a central resource for those interested in independently researching social media and online discourse. It is aimed at researchers, social scientists, data scientists, journalists, practitioners, and policymakers.
 
 ## Why
 
-Disinformation is becoming increasingly dynamic and widespread in the digital space, especially on major social platforms. Algorithms and platform design features often amplify disinformation, hate, and incitement. This project seeks to address these challenges by enabling more effective monitoring of social media.
+Disinformation is becoming increasingly dynamic and widespread in the digital space, especially on major social platforms. Algorithms and platform design features often amplify disinformation, hate, and incitement. This project seeks to address these challenges by enabling more effective data-driven reasearch of social media.
 
 ## How
 
-The project reduces barriers to social media monitoring by aggregating essential information, legal frameworks, tools, and code samples through crowdsourcing. By doing so, it aims to support technically capable individuals in conducting thorough and contextual social media analysis.
+The project reduces barriers to independently researching social media by aggregating essential information, legal frameworks, tools, and code samples through crowdsourcing. By doing so, it aims to support technically capable individuals in conducting thorough and contextual social media analysis.
 
 ## What
 
-- **Knowledge Base**: A comprehensive repository of resources related to social media monitoring.
+- **Knowledge Base**: A comprehensive repository of resources related to independently researching social media.
 - **Tools and Code Samples**: Curated tools and code snippets to facilitate research and analysis.
 - **Legal Information**: Guidance on the legal aspects of social media monitoring.
 
@@ -58,7 +58,7 @@ yarn build
 
 ## Projects: Getting started
 
-The Data Knowledge Hub also includes a collection of projects that demonstrate the use of social media monitoring tools and techniques. To get started with the projects, follow these steps:
+The Data Knowledge Hub also includes a collection of projects that demonstrate the use of social media research and access tools and techniques. To get started with the projects, follow these steps:
 
 1. Clone the repository:
    ```bash

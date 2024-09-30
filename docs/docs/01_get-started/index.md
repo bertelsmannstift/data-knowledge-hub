@@ -4,11 +4,11 @@ sidebar_position: 0
 
 # Introduction to researching and monitoring online discourse
 
-To help you get started and better navigate the research landscape of social media monitoring (SMM) and researching online discourse more broadly, we’ve collected a first set of chapters that aim to provide orientation and guidance to researchers and practitioners exploring various options and dimensions of social media monitoring. We welcome additional content and have added a selection of chapters below that would make for great contributions.
+To help you get started and better navigate the research landscape of social media monitoring (SMM) and researching online discourse more broadly, we’ve collected a first set of chapters that aim to provide orientation and guidance to researchers and practitioners exploring various options and dimensions of independtly researching social media. We welcome additional content and have added a selection of chapters below that would make for great contributions.
 
-**[Ethical Considerations](01_02_ethical-considerations)**: This chapter critically examines the ethical challenges inherent in social media monitoring and data sharing practices. Drawing on the Open Knowledge Foundation’s (OKFN) extensive experience in data ethics, it outlines a set of standards rooted in principles such as privacy, transparency, and accountability. The emphasis is placed on the significance of a privacy-centric design approach to promote ethical data management.
+**[Ethical Considerations](01_02_ethical-considerations)**: This chapter critically examines the ethical challenges inherent in independently researching social media and data sharing practices. Drawing on the Open Knowledge Foundation’s (OKFN) extensive experience in data ethics, it outlines a set of standards rooted in principles such as privacy, transparency, and accountability. The emphasis is placed on the significance of a privacy-centric design approach to promote ethical data management.
 
-**[Legal Considerations](01_03_legal-considerations)**: This chapter provides an overview of the legal parameters that govern the monitoring of social media platforms. By presenting a clear outline of the legal context and incorporating relevant IT considerations, it provides a starting point for researchers and practitioners to ensure lawful engagement with these platforms.
+**[Legal Considerations](01_03_legal-considerations)**: This chapter provides an overview of the legal parameters that govern independent research of social media platforms. By presenting a clear outline of the legal context and incorporating relevant IT considerations, it provides a starting point for researchers and practitioners to ensure lawful engagement with these platforms.
 
 :::info Open for contributions
 
