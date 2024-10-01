@@ -27,6 +27,7 @@ jobs:
       run: |
         cd docs
         npm run build
+        echo data-knowledge-hub.com > build/CNAME
 
     - name: Deploy to GitHub Pages
       run: |
