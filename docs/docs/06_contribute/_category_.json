@@ -1,4 +1,5 @@
 {
   "label": "🌐 Contribute",
-  "position": 7
+  "position": 7,
+  "collapsible": true
 }

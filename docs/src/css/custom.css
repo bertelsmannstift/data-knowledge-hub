@@ -1,10 +1,3 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
-/* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #2C60AD;
   --ifm-color-primary-dark: #094282;
@@ -48,25 +41,84 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   left: 0;
 }
 
-/**
-.theme-doc-sidebar-item-link > a  {
-  color: red !important;
+
+/* Main Headings: DKH-blue for consistent styling */
+.theme-doc-sidebar-item-category-level-1 > .menu__link {
+  color: #2C60AD !important; /* Ensures all main headings are blue */
+  font-weight: bold;
 }
 
-.theme-doc-sidebar-item-category-level-1 > div > a {
-  color: green !important;
-} 
-
-.theme-doc-sidebar-item-category-level-2 > div > a {
-  color: yellow !important;
-} 
-*/
-
-
-.theme-doc-sidebar-item-link > .menu__link--active {
-  background-color: #094282 !important;
+/* Sub Headings: Dark Gray */
+.theme-doc-sidebar-item-category-level-2 > .menu__link {
+  color: #333333; /* Dark gray for subheadings */
 }
 
+/* Highlight Active Chapter */
 .theme-doc-sidebar-item-link > .menu__link--active {
-  color: #fff !important;
+  background-color: #f0f0f0 !important; /* Light gray background for active chapter */
+  font-weight: bold !important;
+  color: #094282 !important; /* Ensures active link color contrasts well */
+}
+
+/* Collapsible Menu */
+.theme-doc-sidebar-item-category-level-1 > .menu__list {
+  display: none;
+}
+
+.theme-doc-sidebar-item-category-level-1 > .menu__link--sublist--active + .menu__list {
+  display: block;
+}
+
+.menu__list-item .menu__link--sublist--active + .menu__list {
+  display: block;
+}
+
+.theme-doc-sidebar-item-category-level-1 > .menu__link--sublist--active {
+  color: #2C60AD;
+}
+
+/* Main category headers */
+.algolia-docsearch-suggestion--category-header {
+  background-color: #2C60AD !important; /* DKH-blue */
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  padding: 8px !important;
+  border-radius: 4px !important;
+}
+
+/* Highlighted search terms */
+.algolia-docsearch-suggestion--highlight {
+  background-color: #6EC2F9 !important; /* Soft yellow highlight */
+  color: #333 !important; /* Dark text for readability */
+  font-weight: bold !important;
+  padding: 0 2px !important;
+  border-radius: 3px !important;
+}
+
+/* Style for each search result item */
+.algolia-docsearch-suggestion {
+  background-color: #f9f9f9 !important; /* Light gray background */
+  color: #333 !important; /* Dark gray text */
+  border-bottom: 1px solid #e0e0e0 !important; /* Subtle bottom border */
+}
+
+/* Search result item on hover */
+.algolia-docsearch-suggestion:hover {
+  background-color: #e3f2fd !important; /* Light blue background on hover */
+}
+
+/* Search input box */
+.searchbox__input {
+  background-color: #ffffff !important;
+  border: 1px solid #ccc !important;
+  color: #333 !important;
+  font-size: 14px !important;
+  border-radius: 4px !important;
+}
+
+/* Currently selected suggestion */
+.aa-cursor .algolia-docsearch-suggestion {
+  background-color: #e0f7fa !important; /* Light teal for selected suggestion */
+  color: #333 !important;
 }
