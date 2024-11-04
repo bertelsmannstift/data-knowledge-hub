@@ -1,4 +1,5 @@
 {
   "label": "How to access data on platforms",
-  "position": 3
+  "position": 3,
+  "collapsible": true
 }
