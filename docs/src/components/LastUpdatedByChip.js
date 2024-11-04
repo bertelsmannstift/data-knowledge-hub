@@ -1,7 +1,7 @@
 import React from "react";
 
-const LastUpdatedByChip = ({ author, updatedOn  }) => (
-  // make a chip that displays the level of knowledge needed
+const LastUpdatedByChip = ({ authorOriginal, authorLastUpdate, createdOn, updatedOn  }) => (
+  // component that displays the last update
   <div style={{ width: "100%" }}>
     <div style={{
       display: "inline-block",
@@ -15,7 +15,7 @@ const LastUpdatedByChip = ({ author, updatedOn  }) => (
       margin: "0px",
       width: "100%", // Ensure the inner div takes up full width
     }}>
-      last updated by {author} on {updatedOn}
+      Original post on {createdOn} by { authorOriginal } { authorLastUpdate ? 'last updated on ' + updatedOn + ' by ' + authorLastUpdate : ''}
     </div>
 </div>
 );
