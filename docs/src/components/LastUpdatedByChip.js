@@ -15,7 +15,7 @@ const LastUpdatedByChip = ({ authorOriginal, authorLastUpdate, createdOn, update
       margin: "0px",
       width: "100%", // Ensure the inner div takes up full width
     }}>
-      Original post on {createdOn} by { authorOriginal } { authorLastUpdate ? 'last updated on ' + updatedOn + ' by ' + authorLastUpdate : ''}
+      Original post on {createdOn} by { authorOriginal }{ authorLastUpdate ? '; last updated on ' + updatedOn + ' by ' + authorLastUpdate : ''}
     </div>
 </div>
 );
