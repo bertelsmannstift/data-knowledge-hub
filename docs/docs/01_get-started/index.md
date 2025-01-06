@@ -2,7 +2,7 @@
 sidebar_position: 0
 ---
 
-# Introduction to researching and monitoring online discourse
+# Getting started: Introduction to researching and monitoring online discourse
 
 To help you get started and better navigate the research landscape of social media monitoring (SMM) and researching online discourse more broadly, we’ve collected a first set of chapters that aim to provide orientation and guidance to researchers and practitioners exploring various options and dimensions of independtly researching social media. We welcome additional content and have added a selection of chapters below that would make for great contributions.
 
