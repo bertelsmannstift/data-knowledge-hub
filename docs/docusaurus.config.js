@@ -37,10 +37,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Data Knowledge Hub',
         logo: {
           alt: 'Data Knowledge Hub Logo',
-          src: 'img/dkh_logo.png',
+          src: 'img/dkh_logo_text.svg',
+          height: '10px',
+          className: 'logo',
         },
         items: [
           /*

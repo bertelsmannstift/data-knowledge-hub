@@ -154,3 +154,19 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   color: #1144A4 !important; /* DKH-blue */
   background-color: #E3F8FE !important; /* Light gray background */
 }
+
+/* Dont show title on desktop */
+
+@media (min-width: 992px) {
+  .logo {
+    max-width: 200px;
+  }
+}
+
+/* Dont show logo on mobile*/
+
+@media (max-width: 991px) {
+  .logo {
+    max-width: 180px;
+  }
+}
