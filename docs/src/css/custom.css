@@ -79,6 +79,16 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   color: #2C60AD;
 }
 
+/* Style border of the Table of Contents on the right */
+.table-of-contents__left-border {
+  border-left: 0px solid var(--ifm-toc-border-color);
+}
+
+/* Style border of the Sidebar on the left */
+.theme-doc-sidebar-container {
+  border-right: 0px solid var(--ifm-toc-border-color) !important;
+}
+
 /* Main category headers */
 .algolia-docsearch-suggestion--category-header {
   background-color: #2C60AD !important; /* DKH-blue */
