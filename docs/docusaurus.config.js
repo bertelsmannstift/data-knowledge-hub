@@ -43,6 +43,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           src: 'img/dkh_logo.png',
         },
         items: [
+          /*
           {
             type: 'doc',
             docId: 'background-rationale',
@@ -51,9 +52,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             label: 'Explore',
           },
           {to: '/docs/contribute/06_01_how-to-contribute', label: 'Contribute', position: 'left'},
+          */
           {
             href: 'https://upgradedemocracy.de/en/',
-            label: 'About the project',
+            label: 'Initiators',
             position: 'right',
           },
         ],

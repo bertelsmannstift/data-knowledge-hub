@@ -9,6 +9,8 @@
   --ifm-code-font-size: 95%;
   --ifm-menu-color-active: #2C60AD;
   --ifm-menu-color-background-active: #6EC2F9;
+  --ifm-navbar-search-input-background-color: #E3F8FE;
+  --ifm-navbar-search-input-color: #000000;
 }
 
 .docusaurus-highlight-code-line {
@@ -110,7 +112,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 /* Search input box */
 .searchbox__input {
-  background-color: #ffffff !important;
+  background-color: #E3F8FE !important;
   border: 1px solid #ccc !important;
   color: #333 !important;
   font-size: 14px !important;
