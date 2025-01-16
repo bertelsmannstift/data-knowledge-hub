@@ -57,9 +57,8 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 /* Highlight Active Chapter */
 .theme-doc-sidebar-item-link > .menu__link--active {
-  background-color: #f0f0f0 !important; /* Light gray background for active chapter */
-  font-weight: bold !important;
-  color: #094282 !important; /* Ensures active link color contrasts well */
+  background-color: #E3F8FE !important; /* Light gray background for active chapter */
+  color: #1144A4 !important; /* Ensures active link color contrasts well */
 }
 
 /* Collapsible Menu */
@@ -73,6 +72,19 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .menu__list-item .menu__link--sublist--active + .menu__list {
   display: block;
+}
+
+.menu__list-item-collapsible > .menu__link--active {
+  color: var(--ifm-menu-color) !important;
+}
+
+.menu__list-item-collapsible > .menu__link--active {
+  color: #1144A4 !important; 
+}
+
+.menu__list-item-collapsible > .menu__link--sublist--active + .menu__link--active  {
+  background-color: red !important; 
+  color: #1144A4 !important;
 }
 
 .theme-doc-sidebar-item-category-level-1 > .menu__link--sublist--active {
