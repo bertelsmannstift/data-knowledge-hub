@@ -13,6 +13,7 @@
   --ifm-navbar-search-input-color: #000000;
   --ifm-breadcrumb-item-background-active: #E3F8FE;
   --ifm-breadcrumb-item-color: red;
+  --ifm-breadcrumb-separator-size: 11px;
 }
 
 .docusaurus-highlight-code-line {
@@ -157,6 +158,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .breadcrumbs__link {
   color: #B3B3B3 !important; 
+}
+
+.breadcrumbs__item:not(:last-child)::after {
+  opacity:0.3;
 }
 
 .breadcrumbs__item--active > .breadcrumbs__link {
