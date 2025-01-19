@@ -26,7 +26,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           // Please change this to your repo.
           // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
           admonitions: {
-            keywords: ['community'],
+            keywords: ['community', 'contact', 'hub-note', 'about', 'contribute'],
             extendDefaults: true,
           },
         },
