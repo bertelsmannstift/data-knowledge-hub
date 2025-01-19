@@ -153,6 +153,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 .itemListElement > .breadcrumbs__link {
   color: #1144A4 !important; /* DKH-blue */
   background-color: #E3F8FE !important; /* Light gray background */
+  font-weight: bold;
 }
 
 .breadcrumbs__link {
@@ -164,7 +165,8 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 }
 
 .breadcrumbs__item--active > .breadcrumbs__link {
-  color: #1144A4 !important; /* DKH-blue */
+  color: #1144A4 !important; 
+  font-weight: bold !important;
 }
 
 /* Dont show title on desktop */
@@ -187,7 +189,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 h2 {
   position: relative;
-  margin-bottom: 1.5rem; /* Adjust spacing as needed */
+  margin-bottom: 1.5rem;
 }
 
 h2::after {
@@ -200,4 +202,50 @@ h2::after {
   border-radius: 50px;
 }
 
+
+/* Tables */
+
+/* General Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+
+/* Header Row Styling */
+table th {
+  background-color: #90e5fc; /* Light blue for header background */
+  color: #000; /* Black text for header */
+  padding: 12px;
+  border: 2px solid #1EB4FF;
+}
+
+/* Alternate Row Coloring */
+table tr:nth-child(odd) {
+  background-color: #ffffff; /* Light blue for odd rows */
+}
+
+table tr:nth-child(even) {
+  background-color: #e3f8fe; /* White for even rows */
+}
+
+/* Cell Styling */
+table td {
+  padding: 12px;
+  border: 2px solid #1EB4FF;
+  vertical-align: top;
+}
+
+/* Bold First Column */
+table td:first-child {
+  font-weight: bold;
+}
+
+/* List Styling */
+
+::marker {
+  color: #1EB4FF !important;
+}
 
