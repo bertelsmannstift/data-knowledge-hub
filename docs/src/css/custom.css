@@ -155,6 +155,14 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: #E3F8FE !important; /* Light gray background */
 }
 
+.breadcrumbs__link {
+  color: #B3B3B3 !important; 
+}
+
+.breadcrumbs__item--active > .breadcrumbs__link {
+  color: #1144A4 !important; /* DKH-blue */
+}
+
 /* Dont show title on desktop */
 
 @media (min-width: 992px) {
