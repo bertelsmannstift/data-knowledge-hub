@@ -12,7 +12,6 @@
   --ifm-navbar-search-input-background-color: #E3F8FE;
   --ifm-navbar-search-input-color: #000000;
   --ifm-breadcrumb-item-background-active: #E3F8FE;
-  --ifm-breadcrumb-item-color: red;
   --ifm-breadcrumb-separator-size: 11px;
 }
 
@@ -183,3 +182,5 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
     max-width: 180px;
   }
 }
+
+/* Style admonitions */
