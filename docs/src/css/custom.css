@@ -183,4 +183,21 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   }
 }
 
-/* Style admonitions */
+/* Headlines */
+
+h2 {
+  position: relative;
+  margin-bottom: 1.5rem; /* Adjust spacing as needed */
+}
+
+h2::after {
+  content: '';
+  display: block;
+  height: 3px; 
+  width: 200px; 
+  background: linear-gradient(90deg, #1EB4FF 0%, #90E5FC 100%); 
+  margin-top: 8px;
+  border-radius: 50px;
+}
+
+
