@@ -5,17 +5,17 @@ const LastUpdatedByChip = ({ authorOriginal, authorLastUpdate, createdOn, update
   <div style={{ width: "100%" }}>
     <div style={{
       display: "inline-block",
-      textAlign: "right",
-      color: "#2C60AD",
+      textAlign: "left",
+      color: "#000000",
       paddingTop: "0px",
-      paddingBottom: "0px",
+      paddingBottom: "20px",
       paddingLeft: "0px",
-      fontSize: "14px",
-      fontWeight: "600",
+      fontSize: "12px",
+      fontWeight: "500",
       margin: "0px",
-      width: "100%", // Ensure the inner div takes up full width
+      width: "100%", 
     }}>
-      Original post on {createdOn} by { authorOriginal }{ authorLastUpdate ? '; last updated on ' + updatedOn + ' by ' + authorLastUpdate : ''}
+      <img src="/img/icon-edit.svg" style={{height: '12px'}}></img> Original post on {createdOn} by { authorOriginal }<br /> { authorLastUpdate ? 'last updated on ' + updatedOn + ' by ' + authorLastUpdate : ''}
     </div>
 </div>
 );

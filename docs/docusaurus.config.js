@@ -37,12 +37,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Data Knowledge Hub',
         logo: {
           alt: 'Data Knowledge Hub Logo',
-          src: 'img/dkh_logo.png',
+          src: 'img/dkh_logo_text.svg',
+          height: '10px',
+          className: 'logo',
         },
         items: [
+          /*
           {
             type: 'doc',
             docId: 'background-rationale',
@@ -51,9 +53,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             label: 'Explore',
           },
           {to: '/docs/contribute/06_01_how-to-contribute', label: 'Contribute', position: 'left'},
+          */
           {
             href: 'https://upgradedemocracy.de/en/',
-            label: 'About the project',
+            label: 'Initiators',
             position: 'right',
           },
         ],
