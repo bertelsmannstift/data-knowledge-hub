@@ -161,6 +161,45 @@ lorem ipsum dolor sit amet
 
 :::
 
+## Expandable Sections
+
+If you have a lot of content, you can use expandable sections to make it more readable. 
+For this we repurposed the HTML `<details>` and `<summary>` elements. If you want to create an expandable section you can just use multiple `<details>` elements with a `<summary>` element inside - the borders will be adjusted automatically.
+
+```md
+<details>
+  <summary>Toggle me!</summary>
+
+  This is the detailed content
+
+  You can use Markdown here including **bold** and _italic_ text, and [inline link](https://docusaurus.io)
+</details>
+<details>
+  <summary>Toggle me!</summary>
+
+  This is the detailed content
+
+  You can use Markdown here including **bold** and _italic_ text, and [inline link](https://docusaurus.io)
+</details>
+```
+
+<details>
+  <summary>Toggle me!</summary>
+
+  This is the detailed content
+
+  You can use Markdown here including **bold** and _italic_ text, and [inline link](https://docusaurus.io)
+</details>
+<details>
+  <summary>Toggle me!</summary>
+
+  This is the detailed content
+
+  You can use Markdown here including **bold** and _italic_ text, and [inline link](https://docusaurus.io)
+</details>
+
+
+
 ## MDX and React Components
 
 [MDX](https://mdxjs.com/) can make your documentation more **interactive** and allows using any **React components inside Markdown**:

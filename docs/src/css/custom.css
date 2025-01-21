@@ -13,6 +13,8 @@
   --ifm-navbar-search-input-color: #000000;
   --ifm-breadcrumb-item-background-active: #E3F8FE;
   --ifm-breadcrumb-separator-size: 11px;
+  --ifm-alert-border-color: black !important;
+  --docusaurus-details-decoration-color: black !important;
 }
 
 .docusaurus-highlight-code-line {
@@ -286,4 +288,39 @@ table td:first-child {
   width: 10px;
   height: 2px;
   margin-right: 5px;
+}
+
+/* Expansion Panels */
+
+details {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  border-radius: 0% !important;
+  border-top: 2px solid #73F19C !important;
+  border-bottom: 2px solid #73F19C !important;
+  border-right: none !important;
+  border-left: none !important;
+  background-color: #fff !important;
+  margin-bottom: 15px;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
+}
+
+details:has(+details) {
+  border-bottom: none !important;
+}
+
+details div {
+  border: none !important;
+  margin-top: 0 !important;
+}
+
+details summary {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+summary::before {
+  border-color: transparent transparent transparent black !important; 
 }
