@@ -4,8 +4,8 @@ const PlatformChip = ({ platform  }) => (
   // make a chip that displays the level of knowledge needed
   <div style={{
     display: "inline-block",
-    backgroundColor: "#2C60AD",
-    color: "#fff",
+    backgroundColor: "#1EB4FF",
+    color: "black",
     borderRadius: "25px",
     paddingTop: "5px",
     paddingBottom: "5px",
