@@ -74,7 +74,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         style: 'dark',
         links: [
           {
-            title: 'Hub',
+            title: 'Data Knowledge Hub.',
             items: [
               {
                 label: 'Knowledge',
@@ -88,15 +88,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             ],
           },
           {
-            title: 'Upgrade Democracy',
+            title: 'upgrade democracy',
             items: [
               {
                 label: 'Website',
                 href: 'https://upgradedemocracy.de/en/',
-              },
-              {
-                label: 'Mastodon',
-                href: 'https://mastodon.social/@TeamUpDem',
               },
               {
                 label: 'LinkedIn',

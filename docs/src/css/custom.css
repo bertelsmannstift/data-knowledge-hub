@@ -249,3 +249,32 @@ table td:first-child {
   color: #1EB4FF !important;
 }
 
+/* Footer Styling */
+
+.footer {
+  background-color: #90E5FC;
+  color: black;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer__title {
+  color: black
+}
+
+.footer__link-item {
+  color:black;
+  text-decoration: underline;
+}
+
+.footer__links {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.footer__col:nth-child(1) .footer__title::before {
+  content: url('/img/icons/hub-icon.svg');
+  width: 10px;
+  height: 2px;
+  margin-right: 5px;
+}
