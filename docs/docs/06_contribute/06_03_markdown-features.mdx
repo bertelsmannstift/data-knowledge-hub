@@ -76,7 +76,7 @@ function HelloDocusaurus() {
 }
 ```
 
-## Admonitions
+## Admonitions (NEW)
 
 For this project we created some custom admonitions. You can use them like this:
 
@@ -161,7 +161,7 @@ lorem ipsum dolor sit amet
 
 :::
 
-## Expandable Sections
+## Expandable Sections (NEW)
 
 If you have a lot of content, you can use expandable sections to make it more readable. 
 For this we repurposed the HTML `<details>` and `<summary>` elements. If you want to create an expandable section you can just use multiple `<details>` elements with a `<summary>` element inside - the borders will be adjusted automatically.
@@ -209,6 +209,56 @@ If you want the borders to have a different color you can include the following 
     `}
 </style>
 ```
+
+## Icon Lists (NEW)
+
+You can use icon lists to make your content more visually appealing. The individual items can be created using the `IconListItem` component. The component has the following properties:
+
+- `text`: The text that is displayed below the title
+- `title`: The title of the item
+- `icon`: The path to the icon that is displayed. The icons are stored in the `static/img/icons` folder.
+- `blob`: The path to the blob that is displayed. There are 7 different blue blobs and 4 green blobs available in the `static/img/icons` folder.
+
+The Icons need to be wrapped in an `IconList` component.
+
+lorem ipsum dolor sit amet 
+
+```md
+<IconList>
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Anonymisation" icon="/img/icons/Icon_Anonymisation.png" blob="/img/icons/blue-blob-1.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Data-Minimisation" icon="/img/icons/Icon_Data-Minimisation_.png" blob="/img/icons/blue-blob-2.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Data-Retention" icon="/img/icons/Icon_Data-Retention.png" blob="/img/icons/blue-blob-3.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Safe-Data-Storage" icon="/img/icons/Icon_Safe-Data-Storage.png" blob="/img/icons/blue-blob-4.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Harm-Mitigation" icon="/img/icons/Icon_Harm-Mitigation.png" blob="/img/icons/blue-blob-5.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Icon_Advocacy" icon="/img/icons/Icon_Advocacy.png" blob="/img/icons/blue-blob-6.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Funding-Transparency" icon="/img/icons/Icon_Research-Funding-Transparency.png" blob="/img/icons/blue-blob-7.svg" />
+</IconList>
+```
+
+<IconList>
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Anonymisation" icon="/img/icons/Icon_Anonymisation.png" blob="/img/icons/blue-blob-1.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Data-Minimisation" icon="/img/icons/Icon_Data-Minimisation_.png" blob="/img/icons/blue-blob-2.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Data-Retention" icon="/img/icons/Icon_Data-Retention.png" blob="/img/icons/blue-blob-3.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Safe-Data-Storage" icon="/img/icons/Icon_Safe-Data-Storage.png" blob="/img/icons/blue-blob-4.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Harm-Mitigation" icon="/img/icons/Icon_Harm-Mitigation.png" blob="/img/icons/blue-blob-5.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Icon_Advocacy" icon="/img/icons/Icon_Advocacy.png" blob="/img/icons/blue-blob-6.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " title="Funding-Transparency" icon="/img/icons/Icon_Research-Funding-Transparency.png" blob="/img/icons/blue-blob-7.svg" />
+</IconList>
+
+
+You can also create icon items without an icon or a title.
+
+```md
+<IconList>
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt "  blob="/img/icons/blue-blob-1.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt "  blob="/img/icons/green-blob-2.svg" />
+</IconList>
+```
+
+<IconList>
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt "  blob="/img/icons/blue-blob-1.svg" />
+  <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt "  blob="/img/icons/green-blob-2.svg" />
+</IconList>
 
 ## MDX and React Components
 
