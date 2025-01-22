@@ -194,6 +194,7 @@ header:not(.hero) {
   justify-items: center;
   text-align: center;
   height: 310px;
+  margin-bottom: 10px;
   background-image: url('/img/dkh_banner.png');
   background-size:cover;
 }
@@ -302,13 +303,13 @@ details {
   border-right: none !important;
   border-left: none !important;
   background-color: #fff !important;
-  margin-bottom: 15px;
   box-shadow: none !important;
-  margin-bottom: 0 !important;
+  margin-bottom: 15 !important;
 }
 
 details:has(+details) {
   border-bottom: none !important;
+  margin-bottom: 0 !important;
 }
 
 details div {

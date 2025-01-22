@@ -183,7 +183,7 @@ For this we repurposed the HTML `<details>` and `<summary>` elements. If you wan
 </details>
 ```
 
-<details>
+<details style={{borderRadius:"100% !important"}}>
   <summary>Toggle me!</summary>
 
   This is the detailed content
@@ -198,7 +198,17 @@ For this we repurposed the HTML `<details>` and `<summary>` elements. If you wan
   You can use Markdown here including **bold** and _italic_ text, and [inline link](https://docusaurus.io)
 </details>
 
+If you want the borders to have a different color you can include the following style section in the .mdx file.
 
+```md
+<style>
+    {`
+    details {
+        border-top: 2px solid black !important;
+        border-bottom: 2px solid black !important;
+    `}
+</style>
+```
 
 ## MDX and React Components
 

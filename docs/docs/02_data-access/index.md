@@ -8,7 +8,7 @@ Once you're familiar with the relevant [ethical considerations](/docs/get-starte
 
 **[Accessing data for independent research](02_02_overview-access)**: This chapter provides an introduction to accessing data for social media monitoring through the lens of platform regulations and policies. 
 
-:::info Open for contributions
+:::contribute Open for contributions
 
 We welcome contributions on a rolling basis. At the moment, we particularly welcome chapters dealing with the following questions 
 
