@@ -9,6 +9,8 @@ import LanguageChip from '../components/LanguageChip';
 import LevelChip from '../components/LevelChip';
 import PlatformChip from '../components/PlatformChip';
 import ArticleCard from '../components/ArticleCard';
+import IconList from '../components/IconList';
+import IconListItem from '../components/IconListItem';
 
 const components = {
   AuthorCard,
@@ -18,6 +20,8 @@ const components = {
   LevelChip,
   PlatformChip,
   ArticleCard,
+  IconListItem,
+  IconList,
 };
 
 export default function CustomMDXProvider({ children }) {

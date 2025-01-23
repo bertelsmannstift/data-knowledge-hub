@@ -25,6 +25,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
+          admonitions: {
+            keywords: ['community', 'contact', 'hub-note', 'about', 'contribute'],
+            extendDefaults: true,
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -70,7 +74,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         style: 'dark',
         links: [
           {
-            title: 'Hub',
+            title: 'Data Knowledge Hub.',
             items: [
               {
                 label: 'Knowledge',
@@ -84,15 +88,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             ],
           },
           {
-            title: 'Upgrade Democracy',
+            title: 'upgrade democracy',
             items: [
               {
                 label: 'Website',
                 href: 'https://upgradedemocracy.de/en/',
-              },
-              {
-                label: 'Mastodon',
-                href: 'https://mastodon.social/@TeamUpDem',
               },
               {
                 label: 'LinkedIn',

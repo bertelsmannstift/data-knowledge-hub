@@ -4,7 +4,7 @@ const LanguageChip = ({ lang  }) => (
   // make a chip that displays the programming language
   <div style={{
     display: "inline-block",
-    backgroundColor: "#6EC2F9",
+    backgroundColor: "#73F19C",
     color: "black",
     borderRadius: "25px",
     paddingTop: "5px",

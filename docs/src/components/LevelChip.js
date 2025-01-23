@@ -4,7 +4,7 @@ const LevelChip = ({ level  }) => (
   // make a chip that displays the level of knowledge needed
   <div style={{
     display: "inline-block",
-    backgroundColor: "black",
+    backgroundColor: "#1144A4",
     color: "#fff",
     borderRadius: "25px",
     paddingTop: "5px",
@@ -15,7 +15,7 @@ const LevelChip = ({ level  }) => (
     fontWeight: "600",
     margin: "5px",
   }}>
-    Level required: {level}
+    Level: {level}
   </div>
 
 );
