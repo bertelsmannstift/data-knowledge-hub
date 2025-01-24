@@ -17,6 +17,10 @@
   --docusaurus-details-decoration-color: black !important;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
   display: block;
@@ -324,4 +328,90 @@ details summary {
 
 summary::before {
   border-color: transparent transparent transparent black !important; 
+}
+
+.hero__subtitle {
+  font-size: 4rem;
+  font-weight: 400;
+  margin-bottom: 0rem;
+}
+
+.hero__title {
+  margin-bottom: 0rem;
+  padding-bottom: 0;
+}
+
+.subheader {
+  width: 100%;
+  min-height: 30vh;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+}
+
+.subheader-text {
+  font-size: 1.5em;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  width: 60%;}
+
+.chevronContainer {
+  margin-top: 20px;
+}
+
+.chevronLink {
+  display: inline-block;
+  color: #000000;
+  font-size: 2rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.chevronLink:hover {
+  transform: translateY(5px);
+}
+
+.chevronIcon {
+  width: 36px;
+  height: 36px;
+}
+
+.say-hello-section {
+  padding: 8rem 0;
+  text-align: center;
+  background: radial-gradient(circle, #1EB4FF, #90E5FC, #ffffff, 30%, transparent 80%);
+}
+
+.say-hello-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none !important;
+}
+
+.say-hello-underline {
+  width: 80px;
+  height: 2px;
+  background-color: black; /* Adjust to match your brand color */
+  margin: 1rem auto;
+  border: none;
+}
+
+.say-hello-text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.email-link {
+  color: #0078d4;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.email-link:hover {
+  text-decoration: underline;
 }
