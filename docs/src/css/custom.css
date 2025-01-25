@@ -331,9 +331,16 @@ summary::before {
 }
 
 .hero__subtitle {
-  font-size: 4rem;
+  font-size: 4em;
   font-weight: 400;
   margin-bottom: 0rem;
+}
+
+@media screen and (max-width: 768px) {
+  .hero__subtitle {
+    font-size: 2em;
+  }
+  
 }
 
 .hero__title {
@@ -343,7 +350,7 @@ summary::before {
 
 .subheader {
   width: 100%;
-  min-height: 30vh;
+  min-height: 35vh;
   text-align: center;
   align-items: center;
   align-content: center;

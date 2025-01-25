@@ -3,6 +3,10 @@
  * and scoped locally.
  */
 
+.heroWrapper {
+  min-height: 95vh;
+}
+
 .heroBanner {
   text-align: center;
   position: relative;
@@ -17,6 +21,7 @@
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
+    height: 30vh;
   }
 }
 

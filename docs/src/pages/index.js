@@ -9,17 +9,14 @@ import HomepageFeatures from '../components/HomepageFeatures';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
+    <div className={styles.heroWrapper}>
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title"><img src="img/dkh_logo_text.svg" height="100px"></img></h1>
-        <p className="hero__subtitle">for researching online discourse</p>
+        <h3 className="hero__subtitle">for researching online discourse</h3>
       </div>
+      
     </header>
-  ); 
-}
-
-function Subheader() {
-  return (
     <div class="subheader">
       <p class="subheader-text">
         The Data Knowledge Hub is a central resource for researchers, social scientists, data scientists, journalists, and policymakers, supporting independent studies on social media and online discourse.
@@ -38,6 +35,13 @@ function Subheader() {
         </a>
       </div>
     </div>
+    </div>
+  ); 
+}
+
+function Subheader() {
+  return (
+<div></div>
   ); 
 }
 
