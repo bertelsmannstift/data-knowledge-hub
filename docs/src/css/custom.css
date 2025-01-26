@@ -107,6 +107,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 /* Style border of the Sidebar on the left */
 .theme-doc-sidebar-container {
   border-right: 0px solid var(--ifm-toc-border-color) !important;
+  background-color: transparent;
 }
 
 /* Main category headers */
@@ -299,14 +300,13 @@ table td:first-child {
 
 details {
   padding: 20px;
-  background-color: #f44336; /* Red */
+  background-color: transparent !important; /* Red */
   color: white;
   border-radius: 0% !important;
   border-top: 2px solid #73F19C !important;
   border-bottom: 2px solid #73F19C !important;
   border-right: none !important;
   border-left: none !important;
-  background-color: #fff !important;
   box-shadow: none !important;
   margin-bottom: 15 !important;
 }
