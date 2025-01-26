@@ -15,7 +15,9 @@ const LastUpdatedByChip = ({ authorOriginal, authorLastUpdate, createdOn, update
       margin: "0px",
       width: "100%", 
     }}>
-      <img src="/img/icon-edit.svg" style={{height: '12px'}}></img> Original post on {createdOn} by { authorOriginal }<br /> { authorLastUpdate ? 'last updated on ' + updatedOn + ' by ' + authorLastUpdate : ''}
+      <img src="/img/icon-edit.svg" style={{height: '12px'}}></img> { createdOn ? 'Original post on ' + createdOn + ' by ' + authorOriginal : ''}
+      { createdOn && <br /> }
+      { authorLastUpdate ? 'last updated on ' + updatedOn + ' by ' + authorLastUpdate : ''}
     </div>
 </div>
 );
