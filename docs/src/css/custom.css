@@ -32,6 +32,15 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+a:not(.menu__link):not(.table-of-contents__link):not(.breadcrumbs__link) {
+  color: black;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #1EB4FF;
+}
+
 .text-white {
   color: white !important;
 }
@@ -300,7 +309,7 @@ table td:first-child {
 
 details {
   padding: 20px;
-  background-color: transparent !important; /* Red */
+  background-color: transparent !important;
   color: white;
   border-radius: 0% !important;
   border-top: 2px solid #73F19C !important;
@@ -318,12 +327,14 @@ details:has(+details) {
 
 details div {
   border: none !important;
-  margin-top: 0 !important;
+  margin-top: 10 !important;
+  padding-top: 0 !important;
 }
 
 details summary {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px !important;
+  margin-bottom: 0 !important;
 }
 
 summary::before {
