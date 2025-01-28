@@ -385,7 +385,7 @@ summary::before {
 }
 
 .say-hello-section {
-  padding: 8rem 0;
+  padding: 10rem 0;
   text-align: center;
   background: radial-gradient(circle, #1EB4FF, #90E5FC, #ffffff, 30%, transparent 80%);
 }
@@ -414,9 +414,20 @@ summary::before {
 }
 
 .email-link {
-  color: #0078d4;
+  color: black;
   text-decoration: underline;
-  font-weight: bold;
+}
+
+.email-link::after {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+  background-image: url('/img/icons/outlink.svg'); /* Path to your icon */
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
 }
 
 .email-link:hover {

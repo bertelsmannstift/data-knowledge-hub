@@ -96,10 +96,10 @@
   border-radius: 12px;
   padding: 2rem;
   max-width: 400px;
-  text-align: center;
+  text-align: start;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: end;
 }
 
@@ -148,7 +148,8 @@
 }
 
 .benefitsDetailsWrapper {
-  margin: 20px
+  margin: 20px;
+  margin-top: 40px;
 }
 
 .benefitsDetailsWrapper > details {

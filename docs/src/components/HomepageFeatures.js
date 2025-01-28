@@ -7,7 +7,7 @@ const FeatureList = [
   {
     title: 'Why',
     icon: '/img/icons/icon_why.png',
-    to: 'docs/',
+    to: 'docs/background-rationale',
     description: (
       <>
         Disinformation is unfolding new dynamics and reach in the digital space. Especially on the major social platforms, recommendation algorithms and other design features seem to further amplify disinformation, hate, and incitement.
@@ -17,7 +17,7 @@ const FeatureList = [
   {
     title: 'How',
     icon: '/img/icons/icon_how.png',
-    to: 'docs/data_collection',
+    to: 'docs/data-collection',
     description: (
       <>
         Against this background, it is important to attract more researchers, social scientists, and data scientists who are both technically capable of conducting social media monitoring and who can classify generated data in the political-social context and thus expand the state of research.
@@ -27,7 +27,7 @@ const FeatureList = [
   {
     title: 'What',
     icon: '/img/icons/icon_what.png',
-    to: 'docs/data_collection',
+    to: 'docs/get-started',
     description: (
       <>
         The Hub aims at reducing the hurdles for independent research on social platforms and online discourse by creating a central knowledge base where we gather the most important information, the legal basis, the best tools and code samples via crowdsourcing. 

@@ -126,7 +126,7 @@ function CallToAction() {
         <div className={styles.aboutContent}>
           <div className={styles.textWrapper}>
             <p>
-            Join the community and contribute to deciphering the dynamics of digital discourse and creating well-founded insights for a better information culture! We always welcome contributions from the community - either via GitHub or by contacting us directly. </p>
+            Join the community and contribute to deciphering the dynamics of digital discourse and creating well-founded insights for a better information culture! We always welcome contributions from the community - either via <a href="" target="_blank" class="email-link">GitHub</a> or by <a href="mailto:upgrade.democracy@bertelsmann-stiftung.de" class="email-link">contacting us directly</a>. </p>
           </div>
         </div>
       </div>
@@ -142,17 +142,37 @@ function BenefitsSection() {
         <h2 className={styles.aboutHeading}>Core benefits – Why participate?</h2>
         <div className={styles.aboutContent}>
           <div className={styles.benefitsDetailsWrapper}>
-          <details>
-            <summary>Access to resources</summary>
-            Gain access to a comprehensive, centralized pool of data, tools and methods for researching online discourse and social media. Practical guidance for every stage of a research project: from data collection to analysis.
-          </details>
-          <details>
-            <summary>Promotion of independent research</summary>
+            <details>
+              <summary>Access to resources</summary>
 
-            This is the detailed content
+              Gain access to a comprehensive, centralized pool of data, tools and methods for researching online discourse and social media. Practical guidance for every stage of a research project: from data collection to analysis.
+            </details>
+            <details>
+              <summary>Promotion of independent research</summary>
 
-            You can use Markdown here including **bold** and _italic_ text, and [inline link](https://docusaurus.io)
-          </details>
+              The Data Knowledge Hub promotes independent research on social media and online discourse. We aim to reduce the hurdles for researchers and analysts by providing a central knowledge base.
+
+            </details>
+            <details>
+              <summary>Community and collaboration</summary>
+
+              Join a community of researchers, data scientists, journalists, and policymakers. Share your knowledge, learn from others, and collaborate on projects.            
+            </details>
+            <details>
+              <summary>Practical tools and examples</summary>
+
+              Find practical tools and code examples for collecting and analyzing data from social media platforms. Learn from the experience of others and contribute your own tools and code.
+            </details>
+            <details>
+              <summary>Interdisciplinary approach</summary>
+
+              The Data Knowledge Hub is a platform for interdisciplinary exchange. We welcome contributions from researchers, data scientists, journalists, and policymakers from a variety of backgrounds.
+            </details>
+            <details>
+              <summary>Co-create and innovate</summary>
+
+              The Data Knowledge Hub is a collaborative open-source project. We always welcome contributions from the community - either via GitHub or by contacting us directly.
+            </details>
           </div>
         </div>
       </div>
@@ -269,7 +289,7 @@ function TeamSection() {
         <div className={styles.aboutContent}>
           <div className={styles.textWrapper}>
             <p>
-              The Data Knowledge Hub is a project of Upgrade Democracy, an initiative of the Bertelsmann Stiftung. The aim of the Hub is to provide researchers, data scientists, journalists and policy makers with centralised resources for independent research into social media and online discourse.
+              The Data Knowledge Hub is a project of <a href="https://upgradedemocracy.de/en/" target="_blank" class="email-link">Upgrade Democracy</a>, an initiative of the <a href="https://www.bertelsmann-stiftung.de/de/startseite" target="_blank" class="email-link">Bertelsmann Stiftung</a>. The aim of the Hub is to provide researchers, data scientists, journalists and policy makers with centralised resources for independent research into social media and online discourse.
             </p>
             <p>
             Together with dozens of researchers and civil society organisations, we aim to promote research in the field of online discourse and thus contribute to strengthening democracy in digital spaces.
