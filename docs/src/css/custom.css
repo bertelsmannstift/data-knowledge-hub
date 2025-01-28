@@ -433,3 +433,10 @@ summary::before {
 .email-link:hover {
   text-decoration: underline;
 }
+
+.email-link-large {
+  font-size: 1.2rem;
+  text-decoration: underline;
+  color: black;
+  text-decoration-color: #1EB4FF;
+}

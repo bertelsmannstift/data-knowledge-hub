@@ -126,7 +126,7 @@ function CallToAction() {
         <div className={styles.aboutContent}>
           <div className={styles.textWrapper}>
             <p>
-            Join the community and contribute to deciphering the dynamics of digital discourse and creating well-founded insights for a better information culture! We always welcome contributions from the community - either via <a href="" target="_blank" class="email-link">GitHub</a> or by <a href="mailto:upgrade.democracy@bertelsmann-stiftung.de" class="email-link">contacting us directly</a>. </p>
+            Join the community and contribute to deciphering the dynamics of digital discourse and creating well-founded insights for a better information culture! We always welcome contributions from the community - either via <a href="https://github.com/bertelsmannstift/data-knowledge-hub" target="_blank" class="email-link">GitHub</a> or by <a href="mailto:upgrade.democracy@bertelsmann-stiftung.de" class="email-link">contacting us directly</a>. </p>
           </div>
         </div>
       </div>
