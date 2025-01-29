@@ -198,7 +198,7 @@ function CodeExamplesSection() {
             </thead>
             <tbody>
               <tr>
-                <td><code>tiktok-scraping</code></td>
+                <td><b>tiktok-scraping</b></td>
                 <td>Collect data on TikTok using puppeteer</td>
                 <td>
                   JavaScript
@@ -213,7 +213,7 @@ function CodeExamplesSection() {
                 </td>
               </tr>
               <tr>
-                <td><code>tiktok-hashtag-analysis</code></td>
+                <td><b>tiktok-hashtag-analysis</b></td>
                 <td>Analyse TikTok hashtags</td>
                 <td>
                   Python
@@ -228,7 +228,7 @@ function CodeExamplesSection() {
                 </td>
               </tr>
               <tr>
-                <td><code>blog-webscraping</code></td>
+                <td><b>blog-webscraping</b></td>
                 <td>Webscraping using rvest and selenium</td>
                 <td>
                   R
@@ -243,7 +243,7 @@ function CodeExamplesSection() {
                 </td>
               </tr>
               <tr>
-                <td><code>twitter-streaming</code></td>
+                <td><b>twitter-streaming</b></td>
                 <td>Large-scale data collection on X (Twitter)</td>
                 <td>
                   Python
@@ -258,7 +258,7 @@ function CodeExamplesSection() {
                 </td>
               </tr>
               <tr>
-                <td><code>twitter-social-network</code></td>
+                <td><b>twitter-social-network</b></td>
                 <td>Social Network Analysis with R</td>
                 <td>
                   R

@@ -398,7 +398,7 @@ summary::before {
 .say-hello-section {
   padding: 10rem 0;
   text-align: center;
-  background: radial-gradient(circle, #1EB4FF, #90E5FC, #ffffff, 30%, transparent 80%);
+  background: radial-gradient(circle, #1EB4FF, #90E5FC, #ffffff, 25%, transparent 80%);
 }
 
 .say-hello-title {
