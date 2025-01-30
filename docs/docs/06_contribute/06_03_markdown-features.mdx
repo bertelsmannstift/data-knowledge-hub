@@ -5,9 +5,9 @@ title: Markdown-Guide
 
 # Guide: How to format content using Markdown
 
-:::note
+:::hub-note
 
-This project is created using Docusaurus. The following section is from the official Docusaurus 2.0 documentation by Meta Platforms, Inc. and is licensed under CC BY 4.0 International.
+This project is created using Docusaurus. Some of the following sections are from the official Docusaurus 2.0 documentation by Meta Platforms, Inc. and is licensed under CC BY 4.0 International.
 
 :::
 
@@ -48,15 +48,14 @@ Let's see how to [see "Contribute" section](../06_01_how-to-contribute).
 
 ## Images
 
-Regular Markdown images are supported.
-
-Add an image at `static/img/docusaurus.png` and display it in Markdown:
+Regular Markdown images are supported. You have to use the relative path to the image.
 
 ```md
-![Docusaurus logo](/img/docusaurus.png)
+![](/../static/img/get-started/get-started-banner-2.png)
 ```
 
-![Docusaurus logo](/img/docusaurus.png)
+Image:
+![](/../static/img/get-started/get-started-banner-2.png)
 
 ## Code Blocks
 
@@ -260,7 +259,111 @@ You can also create icon items without an icon or a title.
   <IconListItem text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt "  blob="/img/icons/green-blob-2.svg" />
 </IconList>
 
-## MDX and React Components
+## Custom components (NEW)
+
+For this project we created some custom components that can be used in the markdown files. Make sure to use .mdx files for this. You can rename your .md files to .mdx files to use the custom components.
+
+### Author Card
+
+You can use the `AuthorCard` component to display information about the author of a contribution. The component has the following properties:
+
+- `name`: The name of the author
+- `avatarSrc`: The path to the avatar of the author
+- `position`: The position of the author
+- `website`: The website of the author
+- `linkedin`: The LinkedIn profile of the author
+- `twitter`: The Twitter / X profile of the author
+- `mastodon`: The GitHub profile of the author
+- `scholar`: The Google Scholar profile of the author
+
+```md
+<AuthorCard
+  name="Open Knowledge Foundation"
+  avatarSrc={require("@site/static/img/contributors/okfn.png").default}
+  position="OKFN"
+  website="https://okfn.org/en/"
+  linkedin="https://www.linkedin.com/company/okfn/"
+/>
+```
+<AuthorCard
+  name="Open Knowledge Foundation"
+  avatarSrc={require("@site/static/img/contributors/okfn.png").default}
+  position="OKFN"
+  website="https://okfn.org/en/"
+  linkedin="https://www.linkedin.com/company/okfn/"
+/>
+
+### Article Card
+
+You can use the `ArticleCard` component to display information about an article or research. The component has the following properties:
+
+- `heading`: The heading of the article
+- `author`: The author of the article
+- `teaser`: A short teaser text about the article
+- `link`: The link to the article
+- `organization`: The organization of the author
+
+
+```md
+<ArticleCard 
+  heading="OSoMe Toolkit for Social Media Research"
+  author="Indiana University Observatory on Social Media" 
+  organization="Indiana University"
+  teaser="Exciting tools created by the OSoMe team made available for research, such as the OSoMe Mastodon Search or tools for network visualization and annotation.Take a look!" 
+  link="https://osome.iu.edu/resources/tools"
+/>
+```
+
+<ArticleCard 
+  heading="OSoMe Toolkit for Social Media Research"
+  author="Indiana University Observatory on Social Media" 
+  organization="Indiana University"
+  teaser="Exciting tools created by the OSoMe team made available for research, such as the OSoMe Mastodon Search or tools for network visualization and annotation.Take a look!" 
+  link="https://osome.iu.edu/resources/tools"
+/>
+
+
+### Chips
+
+There are three kind of chips available: `LevelChip` to indicate which level of programming experience this article is suitable for, `LanguageChip` which indicates the programming language and `PlatformChip` which indicates which social media platform the article relates to. 
+You can use them like this:
+
+```md
+<LevelChip level="Beginner" />
+<LanguageChip lang="Python" />
+<PlatformChip platform="TikTok" />
+```
+
+<LevelChip level="Beginner" />
+<LanguageChip lang="Python" />
+<PlatformChip platform="TikTok" />
+
+
+### Last Updated Chip
+
+You can use the `LastUpdatedByChip` component to display information about the last update of the article. The component has the following properties:
+
+- `authorOriginal`: The original author of the article
+- `createdOn`: The date the article was created
+- `authorLastUpdate`: The author of the last update
+- `updatedOn`: The date of the last update
+
+If you leave out the `authorLastUpdate` and `updatedOn` properties, the component will only display the original author and creation date.
+
+```md
+<LastUpdatedByChip 
+  authorOriginal="Clara Ruthardt" 
+  createdOn="30.09.2024" 
+  authorLastUpdate="Cathleen Berger" 
+  updatedOn="06.12.2024" 
+/>
+```
+
+Result: 
+
+<LastUpdatedByChip authorOriginal="Clara Ruthardt" createdOn="30.09.2024" authorLastUpdate="Cathleen Berger" updatedOn="06.12.2024" />
+
+### Create new React components
 
 [MDX](https://mdxjs.com/) can make your documentation more **interactive** and allows using any **React components inside Markdown**:
 
