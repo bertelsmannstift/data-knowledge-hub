@@ -7,5 +7,51 @@
 
 .featureSvg {
   height: 200px;
-  width: 200px;
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: #fff;
+  min-height: 100%;
+  text-align: center;
+}
+
+.featureContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Ensures content stays at the top */
+}
+
+.learnMoreContainer {
+  margin-top: auto;
+  text-align: center;
+}
+
+.learnMoreLink {
+  text-decoration: underline;
+  color: black;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.learnMoreLink:hover {
+  color: #0056b3;
+}
+
+.chevronIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.learnMoreLink:hover .chevronIcon {
+  transform: translateX(4px);
 }

@@ -45,11 +45,11 @@ const AuthorCard = ({ name, avatar, avatarSrc, position, website, twitter, schol
       <div style={{ fontWeight: "bold" }}>{name}</div>
       <div style={{ fontSize: "14px" }}>{position ? position : 'Author'}</div>
       <div style={{ fontSize: "14px" }}>
-        <a style={{display: website ? 'inline' : 'none'}} href={website} target="_blank">Website </a> 
-        <a style={{display: twitter ? 'inline' : 'none'}} href={twitter} target="_blank">Twitter / X </a> 
-        <a style={{display: mastodon ? 'inline' : 'none'}} href={mastodon} target="_blank">Mastodon </a> 
-        <a style={{display: scholar ? 'inline' : 'none'}} href={scholar} target="_blank">Google Scholar </a>
-        <a style={{display: linkedin ? 'inline' : 'none'}} href={linkedin} target="_blank">LinkedIn </a>
+        <a style={{display: website ? 'inline' : 'none', marginLeft: '2px'}} href={website} target="_blank">Website </a> 
+        <a style={{display: twitter ? 'inline' : 'none', marginLeft: '2px'}} href={twitter} target="_blank">Twitter / X </a> 
+        <a style={{display: mastodon ? 'inline' : 'none', marginLeft: '2px'}} href={mastodon} target="_blank">Mastodon </a> 
+        <a style={{display: scholar ? 'inline' : 'none', marginLeft: '2px'}} href={scholar} target="_blank">Google Scholar </a>
+        <a style={{display: linkedin ? 'inline' : 'none', marginLeft: '2px'}} href={linkedin} target="_blank">LinkedIn </a>
       </div>
     </div>
   </div>

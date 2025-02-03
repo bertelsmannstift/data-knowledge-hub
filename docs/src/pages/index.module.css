@@ -3,20 +3,25 @@
  * and scoped locally.
  */
 
+.heroWrapper {
+  min-height: 95vh;
+}
+
 .heroBanner {
-  padding: 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
-  background-image: url("/img/dkh_banner.png");
-  background-size:cover;
+  background-image: url("/img/banner-long.svg");
+  background-size: cover;
   background-color: white;
   color: black;
+  height: 60vh;
 }
 
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
+    height: 30vh;
   }
 }
 
@@ -28,4 +33,157 @@
 
 .text-black {
   color: black !important;
+}
+
+.aboutSection {
+  padding: 4rem 0;
+  background-color: #f9f9f9;
+}
+
+.ctaSection {
+  padding: 4rem 0;
+  background-color: #fff;
+}
+
+.aboutHeading {
+  font-size: 2rem;
+}
+
+.headingUnderline {
+  width: 60px;
+  height: 4px;
+  background-color: #0078d4; /* Adjust to match your brand color */
+  margin: 0 auto 2rem;
+  border: none;
+}
+
+.imageWrapper {
+  flex: 1;
+  text-align: center;
+}
+
+.aboutImage {
+  max-width: 100%;
+  height: auto;
+}
+
+.textWrapper {
+  flex: 2;
+  margin-top: 20px;
+}
+
+.textWrapper p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.cardsSection {
+  padding: 4rem 0;
+  background-color: #f9f9f9;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: transparent;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 400px;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: end;
+}
+
+.cardImage {
+  margin-bottom: 1.5rem;
+}
+
+.cardImg {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.cardText {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.cardButton {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid #333;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.cardButton:hover {
+  color: #0078d4 !important;
+}
+
+.benefitsSection {
+  padding: 4rem 0;
+  background-color: #f9f9f9;
+}
+
+.benefitsDetailsWrapper {
+  margin: 20px;
+  margin-top: 40px;
+}
+
+.benefitsDetailsWrapper > details {
+  color: black !important;
+  border-top: 2px solid #90E5FC !important;
+  border-bottom: 2px solid #90E5FC !important;
+  background-color: transparent !important;
+}
+
+.benefitsDetailsWrapper > details:has(+details) {
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
+}
+
+details summary {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.examplesSection {
+  padding: 4rem 0;
+  background-color: #ffffff;
+}
+
+.examplesContent {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.examplesContent table {
+  display:table
+}
+
+.teamSection {
+  padding: 4rem 0;
+  background-color: #ffffff;
 }

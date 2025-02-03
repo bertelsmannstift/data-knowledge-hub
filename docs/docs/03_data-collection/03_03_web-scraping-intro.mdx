@@ -54,7 +54,7 @@ In this chapter, you will **be introduced to the `rvest` package and its capabil
 
 To do so, we will use two sites as examples: the pro-Russian disinformation website Anti-Spiegel.ru of conspiracy ideologist Thomas Röper (see [Balzer 2022](https://www.belltower.news/desinformations-medien-der-anti-spiegel-russische-propaganda-und-verschwoerungsmythen-132357/)) and the conspiracy ideology media portal AUF1 (see [Scherndl and Thom 2023](https://correctiv.org/faktencheck/hintergrund/2023/04/27/was-hinter-auf1-stefan-magnet-und-der-ausbreitung-des-oesterreichischen-verschwoerungssenders-steckt-desinformation-und-rechte-hetze/)) run by right-wing extremist Stefan Magnet. While Röper’s Anti-Spiegel is a static website (operated with Wordpress) – i.e. a website which is rendered by the server – AUF1 is a website which, like many other modern websites, is only partially rendered and only fully loaded in the browser.
 
-:::note
+:::hub-note Note
 An overview of the different principles of web content delivery can be found in this [article](https://www.freecodecamp.org/news/rendering-patterns/).
 :::
 
@@ -79,23 +79,23 @@ page <- read_html("https://www.anti-spiegel.ru/category/aktuelles/")
 
 On his website we can find a link with which we can access all his articles. `rvest` can make the data usable for our further analysis. Via `read_html` we can read a page, then we can access different elements of the web page via the function `html_elements()`. The easiest way is to use so called CSS selectors to choose the section which should be extracted: CSS selectors are different patterns which can be used to access different elements of an HTML page.
 
-:::note
+:::hub-note Note
 An overview of different CSS selector patterns can be found at [W3Schools](https://www.w3schools.com/cssref/css_selectors.php).
 To make it easier to choose the right selectors, you can use the Google Chrome extension [SelectorGadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb): By simply selecting and deselecting on a web page, the right CSS selector for the right segment can often be found quickly, as in the example of the title of each article here. Selecting the title and deselecting the ticker shows, that currently 20 titles are being highlighted using the selector `image-left .title`
-:::
+::: 
 
 ![Selectorgadget example on Röpers page](../../static/img/platforms/web-scraping-intro/roeper_page_example.png)
 _Selectorgadget example on Röpers page_
 
 Using the CSS selectors, you can now determine the segments that are relevant to you – afterwards, you will write a function that will store all the relevant information in one record. `rvest` also has useful support functions here, such as `html_text()`. This function allows you to convert html types into simple text vectors; `html_text2()` extends this function and additionally removes unnecessary white spaces.
 
-:::note
+:::community Hint
 You can find a good introduction to rvest and documentation on its [main page](https://rvest.tidyverse.org/).
 :::
 
 The most important functions for this examples case are `html_elements()` and `html_attr()` – they allow you to extract elements and attributes (for example, the link from the href attribute of a `<a>` node). rvest makes use of many functions of the xml2 package, so it’s worth having a look at its documentation.
 
-:::note
+:::hub-note Note
 For example, `html_structure()` from xml2 is useful to get an overview of the structure of a web page.
 :::
 
@@ -135,7 +135,7 @@ _Next page example on Röpers page_
 
 Using the CSS selector `.page-numbers` we can extract all page numbers - however, here we also extract the `Next` navigation object. To extract the relevant information from these objects (here for example the last number) you must use regular expressions. **Regular expressions** are certain terms and symbols that search for patterns in a text, in the following example a number that is not followed by another number.
 
-:::note
+:::hub-note
 A useful extension for R is [Regexplain](https://github.com/gadenbuie/regexplain). This add-on for RStudio allows to test various regular expressions directly in the interface. Many tips and tools can also be found online, for example [regex101](https://regex101.com/).
 :::
 
@@ -230,7 +230,7 @@ The example of Röper illustrates how to handle data from particularly active si
 
 Note that not all articles contain comments – if comments are missing, there is also no `html_element` with comments, leading to fewer comment fields than e. g. title fields and a `tibble` cannot be constructed.
 
-:::note
+:::hub-note
 The reason why we did this is also because not all articles contain comments – if comments are missing, there is also no html_element with comments, leading to fewer comment fields then e. g. title fields and a tibble can’t be constructed.
 :::
 
@@ -274,7 +274,7 @@ All articles of Anti-Spiegel.ru should be scrapped and analyzed – however, in 
 
 Using simple CSS selectors, however, this part cannot be separated from the rest -- though `rvest` can be used with extended `xpath` selectors. These allow us, for example, to only scrape `<p>` nodes which are followed by a `<hr>` node (the separator).
 
-:::info
+:::community Hint
 Cheat sheets for using xpath selectors are available [here](https://devhints.io/xpath).
 :::
 
@@ -486,32 +486,32 @@ rD$server$stop()
 
 ## Literature
 
-AlgorithmWatch. (2023). DSA Must Empower Public Interest Research with Public Data Access. AlgorithmWatch. https://algorithmwatch.org/en/dsa-empower-public-interest-research-data-access/
+- AlgorithmWatch. (2023). DSA Must Empower Public Interest Research with Public Data Access. AlgorithmWatch. https://algorithmwatch.org/en/dsa-empower-public-interest-research-data-access/
 
-Baeck, Jean-Philipp, Fromm, Anne, & Peters, Jean. (2023). Warum Russia Today trotz Sanktionen in Europa weiterläuft. correctiv.org. https://correctiv.org/aktuelles/russland-ukraine-2/2023/02/17/eu-sanktionen-gcore-russia-today/
+- Baeck, Jean-Philipp, Fromm, Anne, & Peters, Jean. (2023). Warum Russia Today trotz Sanktionen in Europa weiterläuft. correctiv.org. https://correctiv.org/aktuelles/russland-ukraine-2/2023/02/17/eu-sanktionen-gcore-russia-today/
 
-Balzer, Erika. (2022). Desinformations-Medien: Der Anti-Spiegel - Russische Propaganda und Verschwörungsmythen. Belltower.News. https://www.belltower.news/desinformations-medien-der-anti-spiegel-russische-propaganda-und-verschwoerungsmythen-132357/
+- Balzer, Erika. (2022). Desinformations-Medien: Der Anti-Spiegel - Russische Propaganda und Verschwörungsmythen. Belltower.News. https://www.belltower.news/desinformations-medien-der-anti-spiegel-russische-propaganda-und-verschwoerungsmythen-132357/
 
-Binder, Matt. (2023). Elon Musk Claims Twitter Login Requirement Just 'Temporary'. Mashable. https://mashable.com/article/elon-musk-twitter-login-requirement-temporary
+- Binder, Matt. (2023). Elon Musk Claims Twitter Login Requirement Just 'Temporary'. Mashable. https://mashable.com/article/elon-musk-twitter-login-requirement-temporary
 
-DerStandard. (2022). Bis zu 50.000 Euro Strafe für Verbreitung von russischem Staatssender RT – alleine FPÖ stimmt dagegen. DER STANDARD. https://www.derstandard.de/story/2000133980411/bis-50-000-euro-fuer-verbreitung-von-russischem-staatssender-rt
+- DerStandard. (2022). Bis zu 50.000 Euro Strafe für Verbreitung von russischem Staatssender RT – alleine FPÖ stimmt dagegen. DER STANDARD. https://www.derstandard.de/story/2000133980411/bis-50-000-euro-fuer-verbreitung-von-russischem-staatssender-rt
 
-EDMO. (2023). Members of the EDMO Task Force on Disinformation on the War in Ukraine Submit Feedback to the EC Call for Evidence on the Provisions in the DSA Related to Data Access. EDMO. https://edmo.eu/2023/05/30/members-of-the-edmo-task-force-on-disinformation-on-the-war-in-ukraine-submit-feedback-to-the-ec-call-for-evidence-on-the-provisions-in-the-dsa-related-to-data-access/
+- EDMO. (2023). Members of the EDMO Task Force on Disinformation on the War in Ukraine Submit Feedback to the EC Call for Evidence on the Provisions in the DSA Related to Data Access. EDMO. https://edmo.eu/2023/05/30/members-of-the-edmo-task-force-on-disinformation-on-the-war-in-ukraine-submit-feedback-to-the-ec-call-for-evidence-on-the-provisions-in-the-dsa-related-to-data-access/
 
-Fung, Brian. (2023a). Academic Researchers Blast Twitter's Data Paywall as 'outrageously Expensive'. CNN Business. https://www.cnn.com/2023/04/05/tech/academic-researchers-blast-twitter-paywall/index.html
+- Fung, Brian. (2023a). Academic Researchers Blast Twitter's Data Paywall as 'outrageously Expensive'. CNN Business. https://www.cnn.com/2023/04/05/tech/academic-researchers-blast-twitter-paywall/index.html
 
-Fung, Brian. (2023b). Reddit Sparks Outrage after a Popular App Developer Said It Wants Him to Pay $20 Million a Year for Data Access. CNN Business. https://www.cnn.com/2023/06/01/tech/reddit-outrage-data-access-charge/index.html
+- Fung, Brian. (2023b). Reddit Sparks Outrage after a Popular App Developer Said It Wants Him to Pay $20 Million a Year for Data Access. CNN Business. https://www.cnn.com/2023/06/01/tech/reddit-outrage-data-access-charge/index.html
 
-German Federal Court of Justice. (2014). BGH, 30.04.2014 - I ZR 224/12. BGH.
+- German Federal Court of Justice. (2014). BGH, 30.04.2014 - I ZR 224/12. BGH.
 
-Glez-Peña, Daniel, Lourenço, Anália, López-Fernández, Hugo, Reboiro-Jato, Miguel, & Fdez-Riverola, Florentino. (2014). Web Scraping Technologies in an API World. Briefings in Bioinformatics. https://academic.oup.com/bib/article-lookup/doi/10.1093/bib/bbt026
+- Glez-Peña, Daniel, Lourenço, Anália, López-Fernández, Hugo, Reboiro-Jato, Miguel, & Fdez-Riverola, Florentino. (2014). Web Scraping Technologies in an API World. Briefings in Bioinformatics. https://academic.oup.com/bib/article-lookup/doi/10.1093/bib/bbt026
 
-Journalist. (2022). Im Desinformationskrieg. journalist.de. https://www.journalist.de/startseite/detail/article/im-desinformationskrieg
+- Journalist. (2022). Im Desinformationskrieg. journalist.de. https://www.journalist.de/startseite/detail/article/im-desinformationskrieg
 
-Khder, Moaiad Ahmad. (2021). Web Scraping or Web Crawling: State of Art, Techniques, Approaches and Application. International Journal of Advances in Soft Computing & Its Applications, 13(3).
+- Khder, Moaiad Ahmad. (2021). Web Scraping or Web Crawling: State of Art, Techniques, Approaches and Application. International Journal of Advances in Soft Computing & Its Applications, 13(3).
 
-Scherndl, Gabriele, & Thom, Paulina. (2023). Was hinter dem österreichischen Verschwörungssender Auf1 steckt. correctiv.org. https://correctiv.org/faktencheck/hintergrund/2023/04/27/was-hinter-auf1-stefan-magnet-und-der-ausbreitung-des-oesterreichischen-verschwoerungssenders-steckt-desinformation-und-rechte-hetze/
+- Scherndl, Gabriele, & Thom, Paulina. (2023). Was hinter dem österreichischen Verschwörungssender Auf1 steckt. correctiv.org. https://correctiv.org/faktencheck/hintergrund/2023/04/27/was-hinter-auf1-stefan-magnet-und-der-ausbreitung-des-oesterreichischen-verschwoerungssenders-steckt-desinformation-und-rechte-hetze/
 
-Spiegel. (2022). Maßnahmen gegen russische Staatsmedien: Verbreitung von RT und Sputnik ist in der EU ab sofort verboten. Der Spiegel. https://www.spiegel.de/kultur/ukraine-krieg-verbreitung-von-rt-und-sputnik-ist-in-der-eu-ab-sofort-verboten-a-49597add-c2b2-44da-b1e4-6832d3ea824f
+- Spiegel. (2022). Maßnahmen gegen russische Staatsmedien: Verbreitung von RT und Sputnik ist in der EU ab sofort verboten. Der Spiegel. https://www.spiegel.de/kultur/ukraine-krieg-verbreitung-von-rt-und-sputnik-ist-in-der-eu-ab-sofort-verboten-a-49597add-c2b2-44da-b1e4-6832d3ea824f
 
-Wickham, Hadley. (2014). Tidy Data. The Journal of Statistical Software. http://www.jstatsoft.org/v59/i10/
+- Wickham, Hadley. (2014). Tidy Data. The Journal of Statistical Software. http://www.jstatsoft.org/v59/i10/
