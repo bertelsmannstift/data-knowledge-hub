@@ -48,16 +48,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           className: 'logo',
         },
         items: [
-          /*
-          {
-            type: 'doc',
-            docId: 'background-rationale',
-            to: '/docs/background-rationale',
-            position: 'left',
-            label: 'Explore',
-          },
-          {to: '/docs/contribute/06_01_how-to-contribute', label: 'Contribute', position: 'left'},
-          */
+          { to: '#about', label: 'About', position: 'left'},
+          { to: '#hub', label: 'Knowledge Base', position: 'left'},
+          { to: '#contribute', label: 'Why contribute?', position: 'left'},
+          { to: '#team', label: 'Who is behind it?', position: 'left'},
           {
             href: 'https://upgradedemocracy.de/en/',
             label: 'Initiators',

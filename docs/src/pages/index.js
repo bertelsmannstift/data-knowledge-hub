@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { useEffect } from 'react';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 
@@ -77,7 +78,7 @@ function AboutSection() {
 
 function CardsSection() {
   return (
-    <section className={styles.cardsSection}>
+    <section className={styles.cardsSection} id="hub">
       <div className="container">
         <div className={styles.cardsContainer}>
           <div className={styles.card}>
@@ -120,8 +121,8 @@ function CardsSection() {
 
 function CallToAction() {
   return (
-    <section id="cta" className={styles.ctaSection}>
-      <div className="container" id="about" >
+    <section id="contribute" className={styles.ctaSection}>
+      <div className="container" >
         <h2 className={styles.aboutHeading}>Got ideas? Doing research yourself? Contribute!</h2>
         <div className={styles.aboutContent}>
           <div className={styles.textWrapper}>
@@ -181,7 +182,7 @@ function BenefitsSection() {
 }
 
 function CodeExamplesSection() {
-  return(
+  return (
     <section id="benefits" className={styles.examplesSection}>
       <div className="container" id="about" >
         <h2 className={styles.aboutHeading}>Code Examples</h2>
@@ -278,13 +279,13 @@ function CodeExamplesSection() {
           </div>
         </div>
     </section>
-  )
+  );
 }
 
 function TeamSection() {
   return (
-    <section id="about" className={styles.teamSection}>
-      <div className="container" id="about" >
+    <section className={styles.teamSection} id="team">
+      <div className="container"  >
         <h2 className={styles.aboutHeading}>Who is behind the Data Knowledge Hub?</h2>
         <div className={styles.aboutContent}>
           <div className={styles.textWrapper}>
@@ -323,8 +324,36 @@ function ContactSection() {
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
+
+  useEffect(() => {
+    const navbarItems = document.querySelectorAll('.navbar__items:not(.navbar__items--right) > .navbar__item');
+
+    // Function to update visibility based on screen size
+    const updateNavbarVisibility = () => {
+      const isDesktop = window.innerWidth > 1024; // Adjust breakpoint if needed
+      navbarItems.forEach(item => {
+        item.style.display = isDesktop ? 'inline' : 'none';
+      });
+    };
+
+    // Run on load
+    updateNavbarVisibility();
+
+    // Listen for window resize events
+    window.addEventListener('resize', updateNavbarVisibility);
+
+    // Cleanup function
+    return () => {
+      navbarItems.forEach(item => {
+        item.style.display = 'none';
+      });
+      window.removeEventListener('resize', updateNavbarVisibility);
+    };
+  }, []);
+
   return (
     <Layout
+      className="landing-page"
       title={`Welcome! ${siteConfig.title}`}
       description="The Data Knowledge Hub for Researching Online Discourse (Data Knowledge Hub) is an initiative that aims to provide a central resource for researchers, social scientists, data scientists, practitioners, and policymakers interested in independently researching disinformation on social media platforms.">
       <main>
@@ -335,7 +364,6 @@ export default function Home() {
         <CardsSection />
         <CallToAction />
         <BenefitsSection />
-        
         <TeamSection />
         <ContactSection />
       </main>

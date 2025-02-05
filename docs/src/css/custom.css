@@ -451,3 +451,14 @@ summary::before {
   color: black;
   text-decoration-color: #1EB4FF;
 }
+
+.navbar__items > .navbar__item {
+  text-decoration: none !important;
+}
+
+
+/* Default: Hide navbar items */
+.navbar__items:not(.navbar__items--right) > .navbar__item {
+  display: none;
+  text-decoration: none !important;
+}
