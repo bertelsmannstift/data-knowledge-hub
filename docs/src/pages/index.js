@@ -335,7 +335,7 @@ export default function Home() {
         <CardsSection />
         <CallToAction />
         <BenefitsSection />
-        <CodeExamplesSection />
+        
         <TeamSection />
         <ContactSection />
       </main>
