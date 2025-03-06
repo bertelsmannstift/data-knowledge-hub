@@ -14,81 +14,81 @@ title: Data analysis with the DISARM Framework
 
 <LastUpdatedByChip authorOriginal="Abel Wabella" createdOn="06.03.2025" authorLastUpdate="Abel Wabella" updatedOn="06.03.2025" />
 
-:::about[About the Open Knowledge Foundation]
+:::about[About Inform Africa]
 
- At Inform Africa, through our fact-checking initiative [HaqCheck](https://haqcheck.org/), we regularly debunk false information primarily associated with the war and conflicts in Ethiopia. Our efforts have revealed how various actors deploy disinformation to influence public perception and policy. 
- Despite our deep understanding of the trends and patterns of these false claims, we previously lacked a systematic way to organize and present our insights. Upon learning about the DISARM Framework from the disinformation researchers' network, we recognized its potential as a robust solution for analyzing organized disinformation campaigns more comprehensively than our prior approach of addressing isolated instances of false information.
+At Inform Africa, through our fact-checking initiative [HaqCheck](https://haqcheck.org/), we regularly debunk false information primarily associated with the war and conflicts in Ethiopia. Our efforts have revealed how various actors deploy disinformation to influence public perception and policy. 
+Despite our deep understanding of the trends and patterns of these false claims, we previously lacked a systematic way to organize and present our insights. Upon learning about the DISARM Framework from the disinformation researchers' network, we recognized its potential as a robust solution for analyzing organized disinformation campaigns more comprehensively than our prior approach of addressing isolated instances of false information.
 :::
 
 The **DISARM Framework - originally named AMITT (Adversarial Misinformation and Influence Tactics & Techniques)** - was developed in December 2018 by the Misinfosec Working Group (MisinfosecWG) under the Credibility Coalition, with support from Craig Newmark Philanthropies. This framework offers a structured and actionable methodology to analyze and combat disinformation and influence operations in the digital age. Renamed and currently maintained by the DISARM Foundation, it empowers researchers, organizations, and communities to engage in the fight against information manipulation by equipping them with standard language to describe tactics and techniques, e.g., on data cleaning, categorization, and strategy execution. This chapter provides a hands-on guide for using the DISARM Framework effectively in disinformation research, particularly in data preprocessing and categorization.
 
-## Overview of the DISARM Framework in Research
+## Overview of the DISARM Framework in research
 
 While the DISARM Framework’s core principles remain focused on understanding and countering disinformation tactics, this guide is specifically tailored to assist in applying the framework to research environments. For disinformation researchers, using DISARM goes beyond theory—it becomes an essential tool for organizing, categorizing, and cleaning data to extract meaningful insights.
 
-Key Benefits of Using the DISARM Framework in Research
+Key benefits of using the DISARM Framework in research
 
-**1.	Codifying Disinformation Techniques and Countermeasures for Research Purposes:** Data cleaning is the first crucial step in the research process using the DISARM framework. Researchers prepare datasets by identifying and removing irrelevant data such as spam, duplicates, and misleading sources. Following this, data categorization allows for organizing cleaned data into specific tactics like misinformation or coordinated propaganda. This categorization enables effective analysis of patterns, sources, and targets, proving invaluable for identifying key narratives and the types of influence operations at play.
-**2.	Applying Standardized Definitions for Research Consistency:** The framework helps ensure consistent interpretation of terms such as “misinformation,” “coordinated campaigns,” and “narratives.” Standardized definitions reduce ambiguity in data labeling, providing more accurate and reliable results. This consistency is crucial for collaborative efforts and long-term data analysis projects.
-**3.	Empowering Collaborative Research with a Unified Methodology:** DISARM fosters a common understanding across different (international) research teams, regardless of whether they focus on sentiment analysis, topic modeling, or other types of content analysis. By utilizing the same framework, teams can more easily share and compare their findings, leading to better-informed conclusions about the nature and impact of disinformation campaigns.
+**1.	Codifying disinformation techniques and countermeasures for research purposes:** Data cleaning is the first crucial step in the research process using the DISARM framework. Researchers prepare datasets by identifying and removing irrelevant data such as spam, duplicates, and misleading sources. Following this, data categorisation allows for organising cleaned data into specific tactics like misinformation or coordinated propaganda. This categorisation enables effective analysis of patterns, sources, and targets, proving invaluable for identifying key narratives and the types of influence operations at play.
+**2.	Applying standardised definitions for research consistency:** The framework helps ensure consistent interpretation of terms such as “misinformation,” “coordinated campaigns,” and “narratives.” Standardised definitions reduce ambiguity in data labelling, providing more accurate and reliable results. This consistency is crucial for collaborative efforts and long-term data analysis projects.
+**3.	Empowering collaborative research with a unified methodology:** DISARM fosters a common understanding across different (international) research teams, regardless of whether they focus on sentiment analysis, topic modelling, or other types of content analysis. By utilising the same framework, teams can more easily share and compare their findings, leading to better-informed conclusions about the nature and impact of disinformation campaigns.
 
-## Integrating Different Object Types for Comprehensive Analysis
+## Integrating different object types for comprehensive analysis
 
-The disarm framework contains many object types, including tactic stages (steps in an incident), and techniques (activities at each tactic stage). To effectively use the DISARM framework, researchers can integrate the analysis of tactics (broad strategies used by disinformers) with the concrete actions within those strategies. This combination allows for a more nuanced understanding of disinformation campaigns and enhances the ability to develop tailored counterstrategies.
+The DISARM framework contains many object types, including tactic stages (steps in an incident), and techniques (activities at each tactic stage). To effectively use the DISARM framework, researchers can integrate the analysis of tactics (broad strategies used by disinformers) with the concrete actions within those strategies. This combination allows for a more nuanced understanding of disinformation campaigns and enhances the ability to develop tailored counterstrategies.
 
-**Example:** When analyzing a disinformation operation, researchers may identify the tactic of "target audience manipulation" and link it to techniques such as the "use of emotional or polarizing content." This specific terminology helps categorize data, facilitates a more structured analysis, and enables more precise communication among researchers and stakeholders about the nature and mechanics of the threat.
+**Example:** When analysing a disinformation operation, researchers may identify the tactic of "target audience manipulation" and link it to techniques such as the "use of emotional or polarising content." This specific terminology helps categorise data, facilitates a more structured analysis, and enables more precise communication among researchers and stakeholders about the nature and mechanics of the threat.
 
-## Phases of a Disinformation Campaign
+## Phases of a disinformation campaign
 
-The DISARM Framework helps to understand and analyze disinformation campaigns using four key phases: **(1) Plan**, **(2) Prepare**, **(3) Execute**, and **(4) Assess**. 
+The DISARM Framework helps to understand and analyse disinformation campaigns using four key phases: **(1) Plan**, **(2) Prepare**, **(3) Execute**, and **(4) Assess**. 
 
 <details>
-  <summary>1. Plan: Setting Strategic Objectives</summary>
+  <summary>1. Plan: Setting strategic objectives</summary>
 
  In the planning phase, strategic goals for the influence operation are established. Actors determine their key messages, targets, and desired outcomes, laying the groundwork for actions designed to manipulate public perception or achieve political gains.
 </details>
 
 <details>
-  <summary>2. Prepare: Establishing the Operational Framework</summary>
+  <summary>2. Prepare: Establishing the operational framework</summary>
 
  Preparation involves building the necessary infrastructure for the disinformation campaign. This includes creating digital assets like fake social media profiles and recruiting operatives to manage these profiles and develop misleading content.
 </details>
 
 <details>
-  <summary>3. Execute: Implementing the Disinformation Campaign</summary>
+  <summary>3. Execute: Implementing the disinformation campaign</summary>
 
- During the execution phase, disinformation is actively disseminated across selected channels to maximize exposure and impact, with strategies adapted in real time based on audience interaction. 
+ During the execution phase, disinformation is actively disseminated across selected channels to maximise exposure and impact, with strategies adapted in real time based on audience interaction. 
 </details>
 
 <details>
-  <summary>4. Assess: Evaluating Campaign Effectiveness</summary>
+  <summary>4. Assess: Evaluating campaign effectiveness</summary>
 
- The assessment phase involves analyzing the campaign's effectiveness and impact on the target audience. This helps determine whether the campaign’s goals were achieved and gathers insights to refine future operations.
+ The assessment phase involves analysing the campaign's effectiveness and impact on the target audience. This helps determine whether the campaign’s goals were achieved and gathers insights to refine future operations.
 </details>
 
-## How to use the Red and Blue Frameworks in Disinformation Research
+## How to use the Red and Blue Frameworks in disinformation research
 
-DISARM has two main frameworks: The DISARM Red Framework, for describing incident creator behaviors, and the DISARM Blue Framework, to describe potential response behaviors. Their distinction as well as their application in research are illustrated in the following: 
+DISARM has two main frameworks: The DISARM Red Framework, for describing incident creator behaviours, and the DISARM Blue Framework, to describe potential response behaviours. Their distinction as well as their application in research are illustrated in the following: 
 
-### The Red Framework: Analyzing Disinformation Tactics
+### The Red Framework: Analysing disinformation tactics
 
-The Red Framework focuses on the tactics and techniques employed by disinformation actors. It helps researchers and analysts dissect and understand the offensive maneuvers used in information-influenced operations. By categorizing these tactics, the Red Framework aids researchers in mapping out the attack vectors and strategies disinformers use.
+The Red Framework focuses on the tactics and techniques employed by disinformation actors. It helps researchers and analysts dissect and understand the offensive manoeuvers used in information-influenced operations. By categorising these tactics, the Red Framework aids researchers in mapping out the attack vectors and strategies disinformers use.
 
-**Example:** In a disinformation campaign to influence an election, researchers can use the Red Framework to identify specific tactics, such as creating fake news stories, using automated bots to amplify certain narratives, or strategically releasing hacked information. By applying standardized terminology from the DISARM framework, such as "fabricated content" or "coordinated inauthentic behavior," researchers can clearly define and categorize the disinformation techniques observed.
+**Example:** In a disinformation campaign to influence an election, researchers can use the Red Framework to identify specific tactics, such as creating false news stories, using automated bots to amplify certain narratives, or strategically releasing hacked information. By applying standardised terminology from the DISARM framework, such as "fabricated content" or "coordinated inauthentic behaviour," researchers can clearly define and categorise the disinformation techniques observed.
 
-### The Blue Framework: Crafting Countermeasures
+### The Blue Framework: Crafting countermeasures
 
-Conversely, the Blue Framework is designed to help practitioners develop and implement strategies to counter disinformation. This framework guides the creation of defensive measures that can effectively neutralize or mitigate the impact of disinformation campaigns. It encourages the adoption of a proactive stance, empowering organizations to not only respond to disinformation but to anticipate and prevent it.
+Conversely, the Blue Framework is designed to help practitioners develop and implement strategies to counter disinformation. This framework guides the creation of defensive measures that can effectively neutralise or mitigate the impact of disinformation campaigns. It encourages the adoption of a proactive stance, empowering organisations to not only respond to disinformation but to anticipate and prevent it.
 
-**Example:** Using insights from the Red Framework analysis, a team can employ the Blue Framework to design educational campaigns informing the public about disinformation signs. They might also collaborate with social media platforms to enhance algorithms that detect and flag false content or work with policymakers to enforce stricter regulations on digital transparency.
+**Example:** Using insights from the Red Framework analysis, a team can employ the Blue Framework to design educational campaigns informing the public about disinformation signs. They might also collaborate with social media platforms to adjust algorithms that detect and flag false content or work with policymakers to enforce stricter regulations on digital transparency.
 
-## Practical Applications and Limitations
+## Practical applications and limitations
 
-There are several examples of how the DISARM framework has been successfully utilized, such as studies examining the spread of [disinformation related to the COVID-19 pandemic]( https://internews.org/resource/nexus-of-manipulation-anatomy-of-influence-operations-in-the-philippines/) and electoral processes in [several countries](https://igp.sipa.columbia.edu/igp-releases-new-dataset-online-foreign-information-operations-targeting-elections). However, while the DISARM framework offers a valuable structure for analyzing and countering disinformation, it's crucial to acknowledge its limitations. Researchers may encounter difficulties in definitively categorizing and labeling disinformation tactics due to their constantly evolving nature and limitations in accessing data from closed online communities or encrypted platforms. In addition, it's essential to recognize that the framework primarily focuses on online disinformation. It may not fully capture the complexities of disinformation spread through offline channels or in contexts with restricted internet access.
+There are several examples of how the DISARM framework has been successfully utilised, such as studies examining the spread of [disinformation related to the COVID-19 pandemic]( https://internews.org/resource/nexus-of-manipulation-anatomy-of-influence-operations-in-the-philippines/) and electoral processes in [several countries](https://igp.sipa.columbia.edu/igp-releases-new-dataset-online-foreign-information-operations-targeting-elections). However, while the DISARM framework offers a valuable structure for analysing and countering disinformation, it is crucial to acknowledge its limitations. Researchers may encounter difficulties in definitively categorising and labelling disinformation tactics due to their constantly evolving nature and limitations in accessing data from closed online communities or encrypted platforms. In addition, it is essential to recognise that the framework primarily focuses on online disinformation. It may not fully capture the complexities of disinformation spread through offline channels or in contexts with restricted internet access.
 
-## Conclusion: A Collaborative and Practical Approach to Disinformation Research
+## Conclusion: A collaborative and practical approach to disinformation research
 
-The DISARM Framework is more than a set of theoretical concepts—it’s a practical tool for researchers working to combat disinformation. By adapting the framework to tasks like data cleaning, categorization, and analysis, researchers can better understand the landscape of information manipulation. The key takeaway is that collaboration, standardized terminology, and structured methodologies are the bedrock of effective disinformation research.
+The DISARM Framework is more than a set of theoretical concepts—it is a practical tool for researchers working to combat disinformation. By adapting the framework to tasks like data cleaning, categorixation, and analysis, researchers can better understand the landscape of information manipulation. The key takeaway is that collaboration, standardised terminology, and structured methodologies are the bedrock of effective disinformation research.
 
 For more detailed methodologies, case studies, and research tools, visit the [DISARM Framework Resource](https://www.disarm.foundation/framework).
 
