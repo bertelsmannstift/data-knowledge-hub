@@ -1,0 +1,558 @@
+---
+title: "Data Collection on YouTube"
+sidebar_position: 2
+---
+
+# Data Collection on YouTube
+
+<LevelChip level="Beginner"/>
+<PlatformChip platform="YouTube"/>
+<LanguageChip lang="Python"/>
+
+<AuthorCard
+  name="Richard Schwenn"
+  avatar="RS"
+  avatarSrc={require("@site/static/img/contributors/schwenn.png").default}
+  position="polisphere"
+  website="https://www.polisphere.eu/de/"
+  linkedin="https://www.linkedin.com/in/richard-schwenn-6b787623a/"
+/>
+
+## Disinformation on video platforms
+
+With the visual turn on social media and the growing importance of audio-visual platforms as information spaces, researchers have long acknowledged YouTube’s central role as a conduit of disinformation, conspiracy and extremist discourse (Allgaier, 2019; Knüpfer et al., 2023). 
+
+In the rapidly developing nexus of disinformation and Artificial Intelligence (AI), YouTube already hosts a variety of manipulative synthetic content, exemplified by recent discoveries of Spanish-speaking, anti-European content disseminated massively by disinformation networks (Maldida.es, 2025). 
+
+This underlines the need for researchers to closely monitor activities on the platform and collect large-scale data for analyses. Fortunately, as YouTube has been the dominant video platform for over a decade now and has long provided access to many features through different APIs, there are lots of brilliant resources out there to help collecting different types of data from YouTube (Richardson & Flannery O’Connor, 2023).
+
+### What you will learn in this chapter
+
+This tutorial focuses on three main data collection methods, equipping you to monitor:
+
+- the prevalence of topic specific videos through **search queries**; 
+- **Comment sections** under specific videos; 
+- **YouTube channels**, their statistics and video output.
+
+
+### Authentication
+Before getting started, make sure to have all necessary authentication requirements. Obtaining an **API key** or **OAuth 2.0 token*+ is the central requirement to making any valid request. However, in contrast to other platforms, there are no huge obstacles to gain access (like vetting processes for researchers). All you need is a Google account with permission to create projects on the Google Cloud Console. ***Step-by-step guides to get an API key** are provided in written form [here](https://medium.com/mcd-unison/youtube-data-api-v3-in-python-tutorial-with-examples-e829a25d2ebd) and in video form [here](https://www.youtube.com/watch?v=th5_9woFJmk). For all the data collection performed in this tutorial, the **OAuth 2.0 token is not required**.
+
+With a key in hand, it is best to follow along using a [Jupyter Notebook](https://jupyter.org/) either in your browser or any common programming environments (IDEs) like [Visual Studio Code](https://code.visualstudio.com/). 
+
+The tutorial guides you through as follows: 
+- Basic setup 
+- Construction of a single query
+- Data collection methods:
+  - Search
+  - Video information
+  - Comments
+  - Channels
+
+:::hub-note Note
+If you want to expand your data collection beyond what is shown here, you can find the **extensive documentation** for this API provided by Google [here](https://developers.google.com/youtube/v3/docs). 
+There is a **quota** for the API, with standard projects being limited to 10,000 request units per day. Google provides an overview of quota unit calculation [here](https://developers.google.com/youtube/v3/determine_quota_cost).
+:::
+
+## Basic Setup
+
+In our python environment, we will use the following packages, all easily installable via pip (PyPI). First, install them using the command below:
+
+```python
+pip install jsonlines tqdm pandas google-api-python-client
+#The exclamation point is used to signal to your machine that this shell command (“pip install something”) should be run externally
+```
+Then, import them into your environment:
+
+```python
+import jsonlines 
+import json
+import pandas as pd
+from datetime import datetime
+from tqdm import tqdm
+import os
+ 
+import googleapiclient.discovery
+from googleapiclient.discovery import build
+import googleapiclient.errors
+```
+
+Here, you insert the necessary information for the authentication:
+
+```python
+
+# You can disable OAuthlib's HTTPS verification when running locally.
+# Please *DO NOT* leave this option enabled in production.
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+ 
+API_key = "YOUR_API_KEY_HERE" ## Replace this string with your actual API key 
+API_service_name = "youtube" ## Specify what Google API you want to use
+API_version = "v3" ## Specify the version 
+```
+
+:::hub-note Note
+Storing credentials like API keys or other sensitive information in plain sight is fine when running your scripts locally. However, a more secure approach is to set them up as environment variables outside your script or to use a configuration file. An easy-to-follow tutorial on the different ways to store sensitive information securely can be accessed [here](https://saturncloud.io/blog/how-to-set-environment-variables-in-jupyter-notebooks-a-guide-for-data-scientists/).
+:::
+
+Now you can construct your **API client**. This object `youtube` is how you interact with and make calls to retrieve YouTube data.
+
+```python
+youtube = build(API_service_name, API_version, developerKey=API_key)
+```
+## Construction of a single query
+
+In essence, all YouTube data is **categorized into different resources** (channels, videos, playlists, thumbnails, etc.). Each resource affords different methods to retrieve data of interest but, luckily, the query structure is largely the same. 
+
+Let us look at a **single query example**. We want to query the YouTube Data API for the top 50 most viewed videos related to election integrity in the weeks leading up to the US election. We use our client object to access the `search()` resource. The `list()` function allows us to retrieve a collection of results that match the query – this can be videos but also channels or playlists. Inside the `list()` function, we specify some necessary and optional parameters. 
+
+```python
+## Initial API request 
+request = youtube.search().list( 
+    part="snippet", #neccessary parameter, where snippet contains more detailed information 
+    maxResults=50, #default value is 5, max value is 50 
+    publishedAfter="2024-10-01T00:00:00Z", 
+    publishedBefore="2024-11-06T00:00:00Z", #timeframe of interest
+    order="viewCount", #alternative would be by “date” in reverse chronological order
+    q="election fraud | stolen election | election lie", 
+    #Use this “|” OR separator or the NOT (-) operator to further specify your keywords of interest
+    relevanceLanguage="en", #returns videos most relevant to the specified language 
+    type="video" #we only want videos as results
+)
+ 
+ 
+response = request.execute() #Use this command to execute our API call 
+```
+If the request was successful, the response contains a dictionary with the following keys:
+
+```python
+response.keys()
+```
+
+```bash
+dict_keys(['kind','etag','nextPageToken','regionCode','pageInfo','items'])
+```
+
+The video results are stored inside items, you can see the exemplary information we retrieved for the first video here: 
+
+```python
+response["items"][0]
+```
+
+```bash
+
+{'kind': 'youtube#searchResult',
+ 'etag': '2PoKoFaYrW3QLMB7vec-RZEr_rM',
+ 'id': {'kind': 'youtube#video', 'videoId': 'IPUhRjAMCTo'}, #videoId is important for later!
+ 'snippet': {'publishedAt': '2024-10-08T03:00:17Z',
+  'channelId': 'UCwWhs_6x42TyRM4Wstoq8HA',
+  'title': 'Jon Stewart on Elon Musk, Free Speech & Trump's Election Interference Claims | The Daily Show',
+  'description': 'With less than a month until Election Day, Jon Stewart unpacks how Trump and his newest "dark MAGA" henchman, Elon Musk, ...',
+  'thumbnails': {'default': {'url': 'https://i.ytimg.com/vi/IPUhRjAMCTo/default.jpg',
+    'width': 120,
+    'height': 90},
+   'medium': {'url': 'https://i.ytimg.com/vi/IPUhRjAMCTo/mqdefault.jpg',
+    'width': 320,
+    'height': 180},
+   'high': {'url': 'https://i.ytimg.com/vi/IPUhRjAMCTo/hqdefault.jpg',
+    'width': 480,
+    'height': 360}},
+  'channelTitle': 'The Daily Show',
+  'liveBroadcastContent': 'none',
+  'publishTime': '2024-10-08T03:00:17Z'}}
+
+```
+
+## Data collection methods: Search
+
+While we have already successfully run a YouTube search query, in any research effort, 50 results are hardly enough to obtain meaningful insights. You can retrieve more data through the `nextPageToken`. This is insofar important, as most APIs rely on pagination to control the amount of data access to their servers. 
+
+If there are more results to your query, the response will include a `nextPageToken`, which you can include in your next query to get the 50 next results – a process we can iterate as long as we want to. Let us generalize our previous code to collect the N first pages of results for our query: 
+
+```python
+## > Loop to retrieve videos related to search query from multiple pages < 
+ 
+N = 2 # We set N to 2 to define that we want the top 2 pages of results. 
+
+# The “nextPageToken” variable will be used in the for loop to store the ID of the next page.
+next_page_token = None     
+search_results = list()  # An empty list to store the query results
+ 
+for i in tqdm(range(N)): # The "tqdm" wrapper around the "ids_list" variable allows us to see a progress bar
+ 
+    # Retrieve a page of results 
+    if next_page_token is None:
+# i.e. if this is the request for the first page, we do not use it as a parameter
+        request = youtube.search().list(
+            part="snippet",
+            maxResults=50,
+            publishedAfter="2024-10-01T00:00:00Z",
+            publishedBefore="2024-11-06T00:00:00Z",
+            order="viewCount",
+            q="election fraud | stolen election | election lie",
+            relevanceLanguage="en",
+            type="video"
+        )
+        page_response = request.execute()
+        search_results.append(page_response)   
+    else:
+ # If it not None however, we use "nextPageToken" to specify the "pageToken" as a query parameter
+        request = youtube.search().list(
+            part="snippet",
+            maxResults=50,
+            publishedAfter="2024-10-01T00:00:00Z",
+            publishedBefore="2024-11-06T00:00:00Z",
+            order="viewCount",
+            q="election fraud | stolen election | election lie",
+            relevanceLanguage="en",
+            type="video",
+	  pageToken=next_page_token # here goes our token
+        )
+        page_response = request.execute()
+        search_results.append(page_response)
+ 
+    # Try to retrieve the "nextPageToken" if there is one.
+    try:
+        next_page_token = page_response["nextPageToken"]
+        
+    # If the response does not have a "nextPageToken" field, we simply break out of the loop
+    except KeyError:
+        break  
+
+```
+
+:::hub-note Note
+If you are only interested in the video results, you can also extract the respective data inside this loop by extending the `search_results` list with `page_response["items"]`.
+:::
+
+## Data collection methods: Video information
+
+As seen above, the information for each video we can collect directly from the search query is limited. To obtain more detailed data like the views or comment count, we turn to the `videos()` resource and again use the `list()` method.  For instance, the same video shown above offers the following statistics: 
+
+```bash
+{'viewCount': '5325494', 'likeCount': '143592', 'favoriteCount': '0', 'commentCount': '8695'}
+```
+
+Let’s write a function that takes a video_id as input und calls the API to retrieve more detailed information. Crucially, the `youtube.videos().list()` request can take multiple id’s as input, so we can speed up our data collection with batches. 
+
+```python
+# Our function to get video details
+def get_video_details(video_ids):
+    if not video_ids:
+        return []
+ 
+    # define batch size (limit is 50 again)
+    batch_size = 50 
+    videos = [] 
+ 
+    # process video id's in batches
+    for i in range(0, len(video_ids), batch_size):
+        batch = video_ids[i:i + batch_size]
+ 
+        details_request = youtube.videos().list(
+            part="snippet,statistics",
+            id=",".join(batch) 
+        )
+        details_response = details_request.execute()
+ 
+        videos.extend([
+            {
+                "title": video["snippet"]["title"],
+                "published_at": video["snippet"]["publishedAt"],
+                "channel_title": video["snippet"]["channelTitle"],
+                "view_count": video["statistics"].get("viewCount", 0),
+                "like_count": video["statistics"].get("likeCount", 0),
+                "dislike_count": video["statistics"].get("dislikeCount", 0),
+                "comment_count": video["statistics"].get("commentCount", 0)
+            }
+            for video in details_response.get("items", [])
+        ])
+ 
+    return videos
+```
+
+Now we extract the ID’s of our 100 most viewed videos related to election integrity and use the function above to retrieve more interesting information about the first 5 of them:
+
+```python
+# Extract unique video ID’s from search results
+video_ids = list(set(video["id"]["videoId"] for page in search_results for video in page.get("items", [])))
+ 
+# limit to first 5 videos
+N = 5
+video_ids = video_ids[:N]
+ 
+# use the function 
+latest_videos = get_video_details(video_ids)
+ 
+# print (some) info
+for video in latest_videos:
+    print(f"Title: {video['title']}, Published: {video['published_at']}, "
+          f"Channel: {video['channel_title']}, Views: {video['view_count']}, "
+          f"Likes: {video['like_count']}, Dislikes: {video['dislike_count']}, "
+          f"Comments: {video['comment_count']}")
+```
+
+```bash
+Title: DEBUNKING The Latest Election Lies From MAGA Senator | Bulwark Takes, Published: 2024-10-07T02:19:12Z, Channel: The Bulwark, Views: 332857, Likes: 20952, Dislikes: 0, Comments: 2460
+
+Title: Voter Registration Fraud Discovered in Pennsylvania, Published: 2024-10-25T18:55:56Z, Channel: The Michael Lofton Show, Views: 567625, Likes: 9243, Dislikes: 0, Comments: 3285
+
+Title: Will Trump’s baseless stolen election claims spark another Capitol attack? | ABC News, Published: 2024-11-03T22:56:07Z, Channel: ABC News (Australia), Views: 3994, Likes: 47, Dislikes: 0, Comments: 0
+
+Title: Can Kamala Harris defeat Trump’s election lies in battleground Georgia? | Anywhere but Washington, Published: 2024-10-03T11:54:15Z, Channel: The Guardian, Views: 99329, Likes: 1718, Dislikes: 0, Comments: 510
+
+Title: "Trump's 2024 Election Strategy: Lies and Controversy!", Published: 2024-11-02T11:09:09Z, Channel: MJ News, Views: 6, Likes: 0, Dislikes: 0, Comments: 1
+ 
+```
+
+As of now, this data is stored in `latest_videos` as a list of dictionaries. To make it more manageable, we simply convert it to a pandas `DataFrame` object (a table, basically). This way, we can also easily export it to a CSV or Excel file.
+
+```python
+data = pd.DataFrame(latest_videos)
+print(data)
+```
+
+_Table 1: Results for video detail collection of the first five videos_
+|index | title                                             | published_at         | channel_title           | view_count | like_count | dislike_count | comment_count |
+|:---:|:--------------------------------------------------|:---------------------|:------------------------|:-----------|:-----------|:--------------|:-------------- |
+|0	   | DEBUNKING The Latest Election Lies From MAGA S... | 2024-10-07T02:19:12Z | The Bulwark	            | 332857     | 20952	  | 0	          | 2460          |
+|1	   | Voter Registration Fraud Discovered in Pennsyl... | 2024-10-25T18:55:56Z |	The Michael Lofton Show	| 567625	 | 9243       | 0	          | 3285          |
+|2	   | Will Trump’s baseless stolen election claims s... | 2024-11-03T22:56:07Z | ABC News (Australia)    | 3994	     | 47         | 0          	  | 0             |
+|3	   | Can Kamala Harris defeat Trump’s election lies... | 2024-10-03T11:54:15Z |	The Guardian            | 99329      | 1718	      | 0             | 510           |
+|4	   | "Trump's 2024 Election Strategy: Lies and Cont... |2024-11-02T11:09:09Z  | MJ News                 | 6	         | 0          |	0             | 1             |
+
+
+## Data collection methods: Comments
+
+Comment sections can be collected via the `comments()` resource and `list()` method. A single query for the example video looks like this: 
+
+```python
+request = youtube.commentThreads().list(
+    part="snippet,id,replies",
+    maxResults=100, #For this resource, the max amount of results is 100 
+    order="time",
+    videoId="IPUhRjAMCTo"
+)
+comment_response = request.execute()
+```
+
+With the output data for a single comment in the thread: 
+
+```bash
+{'kind': 'youtube#commentThread',
+ 'etag': 'FjHUXM2rssJNyLjk0GUPrIP1AeY',
+ 'id': 'Ugy8fFs_mIdgiaBW7wF4AaABAg',
+ 'snippet': {'channelId': 'UCwWhs_6x42TyRM4Wstoq8HA',
+  'videoId': 'IPUhRjAMCTo',
+  'topLevelComment': {'kind': 'youtube#comment',
+   'etag': 'Kp3rpMeuZ1_egtsYT6K_GX9-rrU',
+   'id': 'Ugy8fFs_mIdgiaBW7wF4AaABAg',
+   'snippet': {'channelId': 'UCwWhs_6x42TyRM4Wstoq8HA',
+    'videoId': 'IPUhRjAMCTo',
+    'textDisplay': 'No do the same for Kamala and Biden. Much more material.',
+    'textOriginal': 'No do the same for Kamala and Biden. Much more material.',
+    'authorDisplayName': '@stevenberry3294',
+    'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AIdro_mljzddy7jo9d1eT87Vxkf-wgEsl_KEIealLasN5hw=s48-c-k-c0x00ffffff-no-rj',
+    'authorChannelUrl': 'http://www.youtube.com/@stevenberry3294',
+    'authorChannelId': {'value': 'UCiJyUwZOM8CL07N7RjjmWdA'},
+    'canRate': True,
+    'viewerRating': 'none',
+    'likeCount': 0,
+    'publishedAt': '2025-03-04T02:12:13Z',
+    'updatedAt': '2025-03-04T02:12:13Z'}},
+  'canReply': True,
+  'totalReplyCount': 0,
+  'isPublic': True}}
+```
+
+Having constructed the comment collection query for a single video, we can write a loop to retrieve all comments for the same 100 most viewed videos related to election integrity. 
+
+This loop does two things: 
+- It iterates over each video ID
+- It iterates through all comment results for each video id with pagination
+
+```python
+comment_results = dict() # This time, we create an empty dictionary to store the comment query results
+ 
+# iterate over the video IDs
+for id in tqdm(video_ids): 
+ 
+    # this initialises the comment results for this particular video ID to be an empty list
+    comment_results[id] = list()
+    
+    # Try to retrieve the first page of comments for the video
+    try:
+        request = youtube.commentThreads().list(
+            part="snippet,id,replies",
+            maxResults=100,
+            order="time",
+            videoId=id
+        )
+        comment_response = request.execute()
+        comment_results[id].append(comment_response)
+ 
+# Some videos might have disable comments. 
+# If so, these lines of code will catch the error and simply move on to the next video.
+    except Exception as e:  
+        print(id, e)
+        continue  
+ 
+    # Try to retrieve the "nextPageToken" if there is one.
+    try:
+        nextPageToken = comment_response["nextPageToken"]
+        
+ # If the response does not have a "nextPageToken" field, the loop moves on to the next video
+    except KeyError:
+        continue 
+ 
+ # Given a value was found, this retrieves the comments until a "nextPageToken" can’t be found
+    while True:
+        request = youtube.commentThreads().list(
+            part="snippet,id,replies",
+            maxResults=100,
+            order="time",
+            videoId=id,
+            pageToken=nextPageToken
+        )
+        comment_response = request.execute()
+        comment_results[id].append(comment_response)
+        try:
+            nextPageToken = comment_response["nextPageToken"]
+        except KeyError:
+            break
+ 
+```
+
+Now we retrieve the number of comment threads for each of the first three videos and the respective total number of comments we were able to collect.
+
+```python
+stats_list = list()
+ 
+for i, id in enumerate(comment_results):
+    nb_threads = 0
+    nb_comments = 0
+ 
+    for result in comment_results[id]:
+        nb_threads += len(result["items"])
+        for item in result["items"]:
+            nb_comments += 1
+            if "replies" in item:
+                nb_comments += len(item["replies"]["comments"])
+
+ 
+    stats_list.append({"video_id": id, "nb_threads": nb_threads, "nb_comments": nb_comments})
+ 
+stats_df = pd.DataFrame(stats_list)
+```
+
+_Table 2: Results for comment collection of the first three videos_
+
+| video_id    | nb_threads  | nb_comments   |
+| :---        | :---        | :---          |
+| Header      | Title       | Here's this   |
+| Paragraph   | Text        | And more      |
+
+:::hub-note Note
+We can use the comment data collected to analyze the networks that develop in these comment sections. This can be found in the chapter ["Social Network Analysis"](/docs/docs/04_data-analysis/04_03_social-network-analysis). For this, use the unique ID’s we gathered from the comment authors and their replies and convert them to a simple edge list. 
+:::
+
+## Data collection methods: Channels
+
+Lastly, if we have a set of channels we want to monitor in terms of their impact and the contents they disseminate, we can retrieve this data with `channels()` and `list()` method and subsequently utilize the methods we already learned to collect all the information we need. 
+
+We first write a function to retrieve some channel’s general information and statistics. Then, we write a function that displays the unique ID of that channel. Lastly, we write a function to get the latest videos this channel has published. In this example, we retrieve information about the channel “@AntiSpiegel” that is associated with the media outlet “Anti-Spiegel” run by the prominent Russian propagandist Thomas Röper.
+
+![Gephi Screenshot 1](../../static/img/platforms/youtube/roeper_page_example.png)
+_Screenshot of the AntiSpiegel YouTube channel_
+
+```python
+# define function to get a channel's information
+def get_channel_info(user_handle:str):
+    
+    request = youtube.channels().list(
+        part="snippet,statistics",
+        forHandle= user_handle
+    )
+    
+    response = request.execute()
+    
+    info = response['items'][0]['snippet']
+    statistics = response['items'][0]['statistics']
+ 
+    return info,statistics
+ 
+# define function to get channel id
+def get_channel_id(user_handle):
+    request = youtube.search().list(
+        part="snippet",
+        q=user_handle,
+        type="channel",
+        maxResults=1
+    )
+    response = request.execute()
+    
+    if response["items"]:
+        print(f"Channels found: {len(response["items"])}")
+        return response["items"][0]["id"]["channelId"]
+    else:
+        print("No channel found with that username")
+        return None
+ 
+ 
+# define function to get latest video id's
+def get_latest_videos(channel_id, max_results:int=5,after:str= '2025-01-01',before:str='2025-02-23'):
+    request = youtube.search().list(
+        part="id",
+        channelId=channel_id,
+        order="date",
+        publishedAfter=f"{after}T00:00:00Z",
+        publishedBefore=f"{before}T00:00:00Z",
+        maxResults=max_results,
+        type="video"
+    )
+    response = request.execute()
+    
+    video_ids = [video["id"]["videoId"] for video in response.get("items", [])]
+    video_ids = video_ids[:max_results]
+ 
+    return video_ids
+
+```
+
+Applying these functions to the "@AntiSpiegel" YouTube channel looks like this:
+
+```python
+channel_info,statistics = get_channel_info("@AntiSpiegel")
+print("Channel info:",channel_info['title'],"\n\n","Channel statistics:",statistics)
+ 
+# retrieve channel id for any account
+channel_id = get_channel_id("@AntiSpiegel")
+print(f"\n Channel ID: {channel_id}")
+ 
+# retrieve id's of latest videos on XXXX account
+video_ids = get_latest_videos(channel_id)
+print(video_ids)
+
+```
+
+```bash
+Channel info: Anti Spiegel 
+ 
+Channel statistics: {'viewCount': '14460636', 'subscriberCount': '144000', 'hiddenSubscriberCount': False, 'videoCount': '113'}
+ 
+Channel ID: UC93mqUPbNmHZhl4fAVvZWpQ
+['IJyCAsBJJEo', 'm1jAhFRq3YI', 'T37-ST2kkiI', 'RyxFcVMDJts', 'O9P1eAZ9Sc0']
+```
+
+To sum up, the combination of functions and methods provided in this tutorial equip you to closely monitor and retrieve a comprehensive set of datapoints from YouTube. You can now construct, edit and execute queries for any resource the API provides. Wrapping these queries with some Python code allows you to store and analyse data on channels, videos about topics of interest as well as discourses in the comment sections. Crucially, the steps in this tutorial prepare you to explore the vast landscape of content on YouTube and gain insights into the production and dissemination of disinformation across different geographical or societal contexts. 
+
+## References
+
+- Allgaier, J. (2019). Science and environmental communication on YouTube: Strategically distorted communications in online videos on climate change and climate engineering. Frontiers in communication, 4, 36.
+
+- Knüpfer, C., Schwemmer, C., & Heft, A. (2023). Politicization and Right-Wing Normalization on YouTube: A Topic-Based Analysis of the “Alternative Influence Network”. International Journal Of Communication, 17, 23. Retrieved from https://ijoc.org/index.php/ijoc/article/view/20369.
+
+- Maldida.es. (2025). „European politician crushes Spanish politician in the European Parliament“: A network of disinformation channels on YouTube. Maldita.es. Retrieved April 09, 2025, from https://maldita.es/malditobulo/20250313/network-channels-youtube-disinformation-spanish-politics-eu/.
+
+- Richardson, L., & Flannery O’Connor, J. (2023, August 24). Complying with the Digital Services Act. The Keyword. Retrieved April 09, 2025, from https://blog.google/around-the-globe/google-europe/complying-with-the-digital-services-act/
+
+
