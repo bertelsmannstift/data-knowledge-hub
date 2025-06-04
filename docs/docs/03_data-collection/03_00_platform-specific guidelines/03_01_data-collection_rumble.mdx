@@ -97,7 +97,7 @@ driver = webdriver.Chrome(service=custom_driver_path)
 driver.get("https://rumble.com")
 ```
 
-![Rumble_landing_page](../../../static/img/about_image.png)
+![Rumble_landing_page](../../../static/img/platforms/data-collection-rumble/rumble_landing_page.png)
 
 _Screenshot of Rumble’s landing page with automation disclaimer at the top_
 
@@ -109,7 +109,7 @@ At the top of the browser window, it reads “Chrome wird von automatisierter Te
 
 Before heading to the breadth of extremist content on Rumble, the following ad appears at the bottom of the page. While we could simply close it manually, this presents a great opportunity to learn the core concept of data collection with Selenium – It’s all about the elements. 
 
-![Rumble_ad_popup](../../../static/img/platforms/data-collection-rumble/rumble_landing_page.png)
+![Rumble_ad_popup](../../../static/img/platforms/data-collection-rumble/rumble_ad_popup.png)
 
 _Screenshot of Rumble’s ad popup page and the associated DOM element_
 
@@ -158,7 +158,8 @@ Rumble’s trending page is a good seismograph of the latest MAGA and extremist 
 There is no general rule as to either click on hyperlink elements or load the page directly. However, the `get()` function will load the whole page, whereas sometimes click actions on dynamic webpages will only reload a certain part of that page. This is important for large-scale data collection with time constrains but can be neglected within the scope of this tutorial. 
 :::
 
-![Rumble_menubar](../../static/img/platforms/rumble/rumble_menubar.png)
+![Rumble_menubar](../../../static/img/platforms/data-collection-rumble/rumble_menubar.png)
+
 _Screenshot of Rumble’s menu bar with `<a>` elements displaying the subdomains_
 
 ```python
@@ -172,12 +173,14 @@ driver.get("https://rumble.com/videos?sort=views&date=today")
 
 By default, the trending page lists the most viewed videos of the day. On the right side, there are many different filter options to choose from. Instead of today, we want to inspect the most viewed videos of the past week. Again, we could find the filter option as an element and click it, or we slightly change our URL to directly navigate to that filtered page.
 
-![Rumble_trending_page](../../static/img/platforms/rumble/rumble_trending_page.png)
+![Rumble_trending_page](../../../static/img/platforms/data-collection-rumble/rumble_trending_page.png)
+
 _Screenshot of Rumble’s trending page with filter options_
 
 Looking at the video elements in the DOM, we can see clearly structured `<li>` items with the class “video-listing-entry”, which hold different child elements and attributes. On Rumble, there is no infinite scroll, as the content is separated into different pages. Each page contains 25 video items.  
 
-![Rumble_video_item](../../static/img/platforms/rumble/rumble_video_item.png)
+![Rumble_video_item](../../../static/img/platforms/data-collection-rumble/rumble_video_item.png)
+
 _Screenshot of a video item with its associated DOM element_
 
 We can identify and store these video items by utilising the `find_elements()` function. While there are already valuable data points visible from the listing view alone, we don’t have access yet to the video description, its caption and the comment section. Therefore, we will only fetch the ‘href’ of each video and later visit each video page retrieve all data in detail. 
@@ -243,7 +246,8 @@ video_items = collect_multiple_pages(driver,limit=50)
 
 Before turning to the detailed video data, we introduce one last core method for interacting with web pages via Selenium – sending keys or input. Whenever we have an input element like a search bar or a form to fill out, we can send user input automatically and thus automate a variety of processes. In this case, we want to utilise the search bar, insert a search query, and simulate a key press “ENTER” to automate the search on Rumble. 
 
-![Rumble_search_bar](../../static/img/platforms/rumble/rumble_search_bar.png)
+![Rumble_search_bar](../../../static/img/platforms/data-collection-rumble/rumble_search_bar.png)
+
 _Screenshot of Rumble’s search bar with its associated DOM element_
 
 ```python
@@ -269,7 +273,8 @@ By default, the resulting page will show the most relevant results based on your
 
 After we have collected video links from the trending page or through our search query, we can now inspect a single video page for relevant data points. 
 
-![Rumble_video](../../static/img/platforms/rumble/rumble_video.png)
+![Rumble_video](../../../static/img/platforms/data-collection-rumble/rumble_video.png)
+
 _Screenshot of a single video page with relevant metrics and data points _
 
 For every video, Rumble provides a breadth of information we can collect. However, unlike datapoints such as the title or the author channel, much of the information is presented in a user-friendly way unfit for analyses. For instance, the view count is not a classic integer but abbreviated with a capital K to signify 680,000 views – so are the likes and dislikes for that video. Even after inspection of the DOM, one realises that we need to convert this data to make it usable for analysis. 
