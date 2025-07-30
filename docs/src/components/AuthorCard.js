@@ -1,6 +1,6 @@
 import React from "react";
 
-const AuthorCard = ({ name, avatar, avatarSrc, position, website, twitter, scholar, mastodon, linkedin  }) => (
+const AuthorCard = ({ name, avatar, avatarSrc, position, website, twitter, scholar, mastodon, linkedin, bluesky  }) => (
   // make card with author information
   <div
     style={{
@@ -50,6 +50,7 @@ const AuthorCard = ({ name, avatar, avatarSrc, position, website, twitter, schol
         <a style={{display: mastodon ? 'inline' : 'none', marginLeft: '2px'}} href={mastodon} target="_blank">Mastodon </a> 
         <a style={{display: scholar ? 'inline' : 'none', marginLeft: '2px'}} href={scholar} target="_blank">Google Scholar </a>
         <a style={{display: linkedin ? 'inline' : 'none', marginLeft: '2px'}} href={linkedin} target="_blank">LinkedIn </a>
+        <a style={{display: bluesky ? 'inline' : 'none', marginLeft:'2px'}} href={bluesky} target="_blank" rel="noopener noreferrer">Bluesky </a>
       </div>
     </div>
   </div>
