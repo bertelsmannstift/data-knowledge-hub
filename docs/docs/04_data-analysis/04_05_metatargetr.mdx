@@ -42,16 +42,16 @@ perspective.
 
 Here are the key advantages over Meta’s official Ad Library API:
 
-- Advertiser-Level Data: Instead of looking at single ads, we get a
+- **Advertiser-Level Data:** Instead of looking at single ads, we get a
   consolidated view of the entire targeting strategy of a Facebook page
   or Instagram account.
 
-- Exact Spending per Criterion: The data provides the exact percentage
+- **Exact Spending per Criterion:** The data provides the exact percentage
   of a page’s total spend allocated to each specific targeting
   criterion. This allows for precise analysis of budget allocation, a
   feature not available through the official API.
 
-- Additional Audience Insights: The dataset goes beyond the demographic
+- **Additional Audience Insights:** The dataset goes beyond the demographic
   targeting that is available via the API, as it reveals spending on
   powerful tools like Detailed Targeting (e.g. interest profiles that
   Meta categorizes its users in), Custom Audiences (e.g., targeting a
@@ -327,12 +327,9 @@ spending for each targeting criterion based on the new, combined total.
 # Apply the function to our DHS data
 dhs_data_agg <- aggr_targeting(dhs_data_raw)
 ```
-
-> Note: the `aggr_targeting()` function creates a variable called
-> `spend_per` which shows the spend per targeting criterion
-> across the combined period. If you pull raw data with `get_targeting_db()`, you have to compute this measure
-> yourself as *total spending* (`total_spend_formatted`) *×* *share of spending*
-> (`total_spend_pct`).
+:::hub-note Note
+The `aggr_targeting()` function creates a variable called `spend_per` which shows the spend per targeting criterion across the combined period. If you pull raw data with `get_targeting_db()`, you have to compute this measure yourself as *total spending* (`total_spend_formatted`) *×* *share of spending* (`total_spend_pct`).
+:::
 
 
 ### Visualizing "Detailed" Targeting Criteria
@@ -390,8 +387,9 @@ in Mexican culture events and music, and whose language is set to
 Spanish. This provides concrete, data-driven insights into their
 campaign strategy that would be difficult to obtain otherwise.
 
-> Note:  When multiple targeting criteria show identical spend, that likely indicates they were applied together on the same underlying ads. Because the data that is retrieved is aggregated at the advertiser level it is hard to isolate ads that ran simultaneously. For a better measurement of spend we could divide the total spending by the number of targeting criteria that have the same data (same number of ads and spending) by assuming that spending was divided about equally to each targeting criterion.
-
+:::hub-note Note
+When multiple targeting criteria show identical spend, that likely indicates they were applied together on the same underlying ads. Because the data that is retrieved is aggregated at the advertiser level it is hard to isolate ads that ran simultaneously. For a better measurement of spend we could divide the total spending by the number of targeting criteria that have the same data (same number of ads and spending) by assuming that spending was divided about equally to each targeting criterion.
+:::
 
 ### Visualizing Location Targeting Criteria
 
@@ -510,11 +508,11 @@ the targeting criteria used as proxies for the Latino community are also
 employed by a diverse range of other major advertisers. The top 10
 spenders using these methods include:
 
-- Public Health & Advocacy Groups: Organizations like Planned
+- **Public Health & Advocacy Groups:** Organizations like Planned
   Parenthood, Tobacco Free Florida, and The California Endowment use
   this targeting for outreach and awareness campaigns.
 
-- Non-Profits and Charities: Pages such as Catholic Relief Services,
+- **Non-Profits and Charities:** Pages such as Catholic Relief Services,
   Operation Smile, and The International Fellowship of Christians and
   Jews appear to use these criteria for fundraising and supporter
   engagement.
