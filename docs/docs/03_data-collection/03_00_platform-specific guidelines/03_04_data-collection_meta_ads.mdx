@@ -31,7 +31,9 @@ includes metadata such as the ad’s text, the advertiser’s page, the time
 period it ran, the amount spent (as a range), impressions delivered
 (also as a range), and breakdowns of the audience by age, gender, and
 region. Importantly, many metrics are given as ranges (min–max) rather
-than precise values. This tutorial will demonstrate how to use R (with
+than precise values. 
+
+This tutorial will demonstrate how to use R (with
 the `tidyverse` ecosystem) and the `Radlibrary` R package to access the
 Meta Ad Library via its official API. We will walk through obtaining API
 access, constructing queries to find ads (by keyword or page id),
@@ -69,17 +71,10 @@ API. Meta requires a few one-time setup steps:
     confidential and treat it like a password – anyone with this token
     could potentially query the API on your behalf until it expires.
 
-> Token expiration: By default, tokens from the Explorer are
-> [short-lived](https://developers.facebook.com/docs/facebook-login/guides/access-tokens#termtokens)
-> (usually ~1-2 hours). For short analysis sessions that might be
-> sufficient, but in most cases you will likely need longer access. You
-> can exchange the short-lived token for a 60-day token using your App’s
-> App ID and App Secret. In this tutorial, we will proceed with a
-> short-lived token for simplicity, but it is strongly encouraged to get
-> a long-term token for your analysis (holds for 60 days). For
-> instructions on how to do this, refer to the [official Meta
-> documentation on access
-> tokens](https://facebookresearch.github.io/Radlibrary/articles/Radlibrary.html#generating-persistent-tokens).
+:::hub-note Note
+**Token expiration:** By default, tokens from the Explorer are [short-lived](https://developers.facebook.com/docs/facebook-login/guides/access-tokens#termtokens)(usually ~1-2 hours). For short analysis sessions that might be
+sufficient, but in most cases you will likely need longer access. You can exchange the short-lived token for a 60-day token using your App’s App ID and App Secret. In this tutorial, we will proceed with a short-lived token for simplicity, but it is strongly encouraged to get a long-term token for your analysis (holds for 60 days). For instructions on how to do this, refer to the [official Meta documentation on access tokens](https://facebookresearch.github.io/Radlibrary/articles/Radlibrary.html#generating-persistent-tokens).
+:::
 
 ### Step 2: Installing and Loading R Packages
 
@@ -212,12 +207,9 @@ query <- adlib_build_query(
 )
 ```
 
-> **Note**: You might encounter the following warning:  
-> *Warning: Unsupported fields supplied:* followed by a list of
-> parameters.  
-> This warning can be safely ignored. The `Radlibrary` package, despite
-> being developed by the Facebook team, may not be up to date with the
-> newest parameters.
+:::hub-note Note
+You might encounter the following warning: *Warning: Unsupported fields supplied:* followed by a list of parameters. This warning can be safely ignored. The `Radlibrary` package, despite being developed by the Facebook team, may not be up to date with the newest parameters.
+:::
 
 ------------------------------------------------------------------------
 
@@ -706,8 +698,9 @@ gender, and percentage. Each row might say, for example, ad X – age
 women aged 18-24). The percentages for a given ad across all age/gender
 categories sum up to 100%.
 
-> Important: if an ad did not reach a particular demographic group, it may
-not have an entry for that group.
+:::community[Important]
+If an ad did not reach a particular demographic group, it may not have an entry for that group.
+:::
 
 Now, what can we learn from this? Here are a couple of insights we might
 extract:
@@ -720,10 +713,9 @@ or simply fail to engage older audiences. Similarly, we could examine
 how many ads target women vs. men, or the average percentage of
 impressions to women vs. men.
 
-> *Note of caution:* A more robust analysis would weight the data by
-impressions or spending. Averaging percentages across ads without doing
-so treats a low-reach ad the same as a high-reach one. For simplicity,
-however, we proceed with the unweighted approach.
+:::community[Note of caution]
+A more robust analysis would weight the data by impressions or spending. Averaging percentages across ads without doing so treats a low-reach ad the same as a high-reach one. For simplicity, however, we proceed with the unweighted approach.
+:::
 
 For a quick view, we can calculate the overall gender split in relative
 impressions, assuming equal weight per ad (again, caution advised):
